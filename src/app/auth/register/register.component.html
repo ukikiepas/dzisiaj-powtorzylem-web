@@ -1,0 +1,93 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="login-container d-flex justify-content-center align-items-center min-vh-100 py-md-5">
+  <div class="login-panel p-4 p-md-5 rounded shadow text-center" style="width: 100%; max-width: 1200px;">
+    <h2 class="text-center mb-4">Rejestracja</h2>
+    <form [formGroup]="registerForm" >
+      <div class="row g-3">
+
+        <!-- Pierwsza kolumna -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="firstName">Imię</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstname" placeholder="">
+            <div *ngIf="registerForm.get('firstname')?.touched && registerForm.get('firstname')?.errors?.['required']">
+              <p class="text-danger fw-bold">To pole jest wymagane</p>
+            </div>
+          </div>
+          <div class="form-group mt-md-3">
+            <label for="lastName">Nazwisko</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastname" placeholder="">
+            <div *ngIf="registerForm.get('lastname')?.touched && registerForm.get('lastname')?.errors?.['required']">
+              <p class="text-danger fw-bold">To pole jest wymagane</p>
+            </div>
+          </div>
+          <div class="form-group mt-md-3">
+            <label for="username">Nazwa użytkownika</label>
+            <input type="text" class="form-control" id="username" formControlName="username" placeholder="">
+            <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.errors?.['required']">
+              <p class="text-danger fw-bold">To pole jest wymagane</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Druga kolumna -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="">
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']">
+              <p class="text-danger fw-bold">To pole jest wymagane</p>
+            </div>
+          </div>
+          <div class="form-group mt-md-3">
+            <label for="password">Hasło</label>
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="">
+            <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']">
+              <p class="text-danger fw-bold">To pole jest wymagane</p>
+            </div>
+            <div *ngIf="registerForm.get('password')?.errors?.['minlength'] && (registerForm.get('password')?.touched )">
+            <p class="text-danger fw-bold">Hasło musi zawierać co najmniej 8 znaków.</p>
+            </div>
+          </div>
+          <div class="form-check mt-md-5 mt-3">
+            <input type="checkbox" class="form-check-input" id="isPublicAccount" formControlName="isPublicAccount">
+            <label class="form-check-label" for="isPublicAccount">Czy chcesz, aby Twoje konto było publiczne?</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row g-3 mt-3">
+        <div class="col-12 text-center mb-3 p-2 rounded">
+          <i class="fa fa-info-circle text-primary" aria-hidden="true" style="font-size: 24px;"></i>
+          <p class="ml-2 text-primary font-weight-bold">Dane poniżej nie są obowiązkowe, ale mogą pomóc innym użytkownikom poznać Cię lepiej.</p>
+        </div>
+      </div>
+
+
+        <!-- Dodatkowe dane -->
+        <div class="col-12 col-md-12 ">
+          <div class="form-group">
+            <label for="city">Miasto</label>
+            <input type="text" class="form-control" id="city" formControlName="city" placeholder="">
+          </div>
+        </div>
+        <div class="col-12 col-md-12">
+          <div class="form-group">
+            <label for="bio">O mnie</label>
+            <textarea class="form-control" id="bio" rows="3" formControlName="bio" placeholder="Jeśli chcesz, podziel się z innymi użytkownikami informacjami o Tobie - po prostu się przedstaw :)"></textarea>
+          </div>
+        </div>
+
+
+      <div class="row g-3">
+        <div class="col-12 text-center ">
+          <button type="submit" class="btn btn-primary btn-block btn-lg mt-3 mt-md-3" (click)="register()" >Zarejestruj się</button>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-link mt-md-2" (click)="goToLoginPage()">Masz już konto? Zaloguj się!</button>
+      </div>
+    </form>
+  </div>
+</div>

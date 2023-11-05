@@ -1,0 +1,30 @@
+.login-container {
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  font-family: 'Arial', sans-serif;
+}
+
+.login-panel {
+  background-color: #ffffff;
+  max-width: 1000px;
+  width: 100%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+textarea::placeholder {
+  text-align: center;
+}
+
+.fa-google {
+  margin-right: 10px;  /* Dostosuj wartość według potrzeb */
+}
+
+.logo {
+  width: 100px;  /* Szerokość logo - możesz dostosować według potrzeb */
+  height: 100px; /* Wysokość logo - możesz dostosować według potrzeb */
+}
+
+@media (max-width: 576px) {
+  .login-panel {
+    padding: 3rem 2rem;
+  }
+}
