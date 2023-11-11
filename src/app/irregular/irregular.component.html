@@ -1,0 +1,74 @@
+<div class="container mt-4 mb-4">
+  <div class="row justify-content-center mb-2">
+    <div class="col-lg-8">
+      <form [formGroup]="form">
+        <div class="row mb-3">
+          <div class="col">
+            <select class="form-select" formControlName="selectedLevel">
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="C1">C1</option>
+              <option value="C2">C2</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-select" formControlName="selectedCount">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="35">35</option>
+              <option value="40">40</option>
+            </select>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary" type="button" [disabled]="verbsGenerated" (click)="fetchVerbs()">Pobierz czasowniki</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="thead-light text-center">
+      <tr>
+        <th scope="col">Forma Podstawowa</th>
+        <th scope="col">Druga Forma</th>
+        <th scope="col">Trzecia Forma</th>
+        <th scope="col">Tłumaczenie</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let verb of verbs; let i = index">
+        <td>{{ verb.baseForm }}</td>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="verb.userPastSimple"
+                 [class.is-invalid]="formSubmitted && !verb.isPastSimpleCorrect">
+          <span *ngIf="formSubmitted && verb.userPastSimple !== verb.pastSimple"
+                class="correct-answer">{{ verb.pastSimple }}</span>
+        </td>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="verb.userPastParticiple"
+                 [class.is-invalid]="formSubmitted && !verb.isPastParticipleCorrect">
+          <span *ngIf="formSubmitted && verb.userPastParticiple !== verb.pastParticiple"
+                class="correct-answer">{{ verb.pastParticiple }}</span>
+        </td>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="verb.userTranslation"
+                 [class.is-invalid]="formSubmitted && !verb.isTranslationCorrect">
+          <span *ngIf="formSubmitted && verb.userTranslation !== verb.translation"
+                class="correct-answer">{{ verb.translation }}</span>
+        </td>
+      </tr>
+    </table>
+    <div class="text-center mb-4 mt-4">
+      <button *ngIf="verbsGenerated" class="btn btn-success text-center m-2" (click)="validateVerbs()">Sprawdź odpowiedzi</button>
+      <button *ngIf="verbsGenerated" class="btn btn-secondary" [disabled]="!formSubmitted" (click)="resetState()">Resetuj / Nowy zestaw</button>
+    </div>
+  </div>
+</div>

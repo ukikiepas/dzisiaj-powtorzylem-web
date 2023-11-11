@@ -34,7 +34,7 @@ export class AuthenticationService {
   }
 
   register(registerRequest: User): Observable<any> {
-    return this.http.post(`${this.API_URL}/${RoutePaths.REGISTER}`, registerRequest);
+    return this.http.post(`${this.API_URL}/register`, registerRequest);
   }
 
   refreshToken(): Observable<any> {

@@ -1,0 +1,10 @@
+Copy code
+.is-invalid {
+  border-color: #dc3545; /* Czerwony kolor ramki dla błędnych odpowiedzi */
+}
+
+.correct-answer {
+  color: green;
+  font-weight: bold;
+  margin-left: 10px; /* Dodaj odstęp między polem tekstowym a poprawną odpowiedzią */
+}
