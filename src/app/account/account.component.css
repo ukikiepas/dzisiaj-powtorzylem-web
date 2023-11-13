@@ -1,0 +1,8 @@
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* kluczowy styl dla okrągłego obrazu */
+  object-fit: cover; /* zapewnia, że obraz wypełni obszar bez rozciągania */
+  border: 3px solid #ddd;
+  margin-bottom: 15px;
+}

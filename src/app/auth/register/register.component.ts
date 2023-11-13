@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {User} from "../../models/user.interface";
+import {User} from "../../account/models/user.interface";
 import {Role} from "../../models/role.enum";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from "../services/authentication.service";
-import {RoutePaths} from "../../models/routepaths.enum";
+import {RoutePaths} from "../../models/route-paths.enum";
 
 
 @Component({
@@ -46,7 +46,8 @@ export class RegisterComponent {
         city: this.registerForm.value.city,
         bio: this.registerForm.value.bio,
         role: Role.USER,
-        isPublicAccount: this.registerForm.value.isPublicAccount
+        isPublicAccount: this.registerForm.value.isPublicAccount,
+        image: ""
       };
       console.log(userToRegister);
       this.authenticationService.register(userToRegister).subscribe(

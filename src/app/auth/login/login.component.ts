@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {AuthenticationService} from "../services/authentication.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { Modal } from 'bootstrap';
-import {RoutePaths} from "../../models/routepaths.enum";
+import {RoutePaths} from "../../models/route-paths.enum";
 
 @Component({
   selector: 'app-login',

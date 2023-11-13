@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, catchError, Observable, throwError} from 'rxjs';
 import { tap } from 'rxjs/operators';
-import {User} from "../../models/user.interface";
-import {RoutePaths} from "../../models/routepaths.enum";
+import {User} from "../../account/models/user.interface";
+import {RoutePaths} from "../../models/route-paths.enum";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class AuthenticationService {
 
 
   login(authenticationRequest: any): Observable<any> {
-    return this.http.post(`${this.API_URL}/authenticate`, authenticationRequest).pipe(
+    return this.http.post(`${RoutePaths.GENERAL_API}/authenticate`, authenticationRequest).pipe(
       tap((response: any) => {
         localStorage.setItem('access_token', response.access_token);
         localStorage.setItem('refresh_token', response.refresh_token);
@@ -34,7 +34,7 @@ export class AuthenticationService {
   }
 
   register(registerRequest: User): Observable<any> {
-    return this.http.post(`${this.API_URL}/register`, registerRequest);
+    return this.http.post(`${RoutePaths.GENERAL_API}/register`, registerRequest);
   }
 
   refreshToken(): Observable<any> {
@@ -42,7 +42,7 @@ export class AuthenticationService {
     const headers = {
       'Authorization': `Bearer ${refreshToken}`
     };
-    return this.http.post(`${this.API_URL}/refresh-token`, {}, { headers: headers }).pipe(
+    return this.http.post(`${RoutePaths.GENERAL_API}/refresh-token`, {}, { headers: headers }).pipe(
       tap((response: any) => {
         localStorage.setItem('access_token', response.access_token);  // Zakładając, że odpowiedź zawiera nowy token dostępu
         this.jwtTokenSubject.next(response.access_token);
@@ -71,7 +71,7 @@ export class AuthenticationService {
       'Authorization': `Bearer ${accessToken}` // Dodajemy token dostępu do nagłówka Authorization.
     });
 
-    return this.http.post<void>(`${this.API_URL}/logout`, {}, {headers: headers}).pipe(
+    return this.http.post<void>(`${RoutePaths.GENERAL_API}/logout`, {}, {headers: headers}).pipe(
       tap(() => {
         console.log(headers);
         localStorage.removeItem('access_token');

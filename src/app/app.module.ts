@@ -11,14 +11,16 @@ import { FooterComponent } from './utlis/components/utils/footer/footer.componen
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './homepage/home/home.component';
 import { IrregularComponent } from './irregular/irregular.component';
-import {JwtInterceptor} from "./auth/services/jwtinterceptor.service";
+import {JwtInterceptor} from "./auth/services/jwt-interceptor.service";
+import { AccountComponent } from './account/account.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'irregular', component: IrregularComponent}
+  { path: 'irregular', component: IrregularComponent},
+  { path: 'account', component: AccountComponent}
 ];
 
 
@@ -31,6 +33,7 @@ const routes: Routes = [
     FooterComponent,
     HomeComponent,
     IrregularComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

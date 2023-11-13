@@ -1,0 +1,166 @@
+<div class="container mt-4" *ngIf="userData">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <h2 class="card-title text-center mb-4">Profil Użytkownika</h2>
+          <div class="text-center">
+            <img [src]="profileImageUrl" class="profile-image">
+          </div>
+          <!-- Ukryty input do wyboru pliku -->
+          <input type="file" id="fileInput" accept=".jpeg,.jpg,.png" (change)="onFileSelected($event)" style="display: none;">
+
+          <!-- Przycisk do wyboru pliku -->
+          <div class="text-center mb-2" *ngIf="!isImageChosen">
+            <button class="btn btn-primary btn-sm" (click)="document.getElementById('fileInput')?.click()">Edytuj zdjęcie profilowe</button>
+          </div>
+
+          <div *ngIf="isImageChosen">
+            <button class="btn btn-success btn-sm m-2" (click)="saveNewImage()">Zapisz</button>
+            <button class="btn btn-danger btn-sm  m-2" (click)="discardNewImage()">Odrzuć</button>
+          </div>
+
+          <!-- DANE USERA -->
+          <p><strong>Imię:</strong> {{ userData.firstname }}</p>
+          <p><strong>Nazwisko:</strong> {{ userData.lastname }}</p>
+          <p><strong>Nazwa użytkownika:</strong> {{ userData.username }}</p>
+          <p><strong>Email:</strong> {{ userData.email }}</p>
+          <p><strong>Miasto:</strong> {{ userData.city }}</p>
+          <p><strong>O mnie:</strong> {{ userData.bio }}</p>
+          <p><strong>Data utworzenia konta:</strong> {{ userData.creationDate | date: 'longDate' }}</p>
+          <p><strong>Rola:</strong> {{ userData.role }}</p>
+          <p><strong>Konto publiczne:</strong> {{ userData.isPublicAccount ? 'Tak' : 'Nie' }}</p>
+
+          <div>
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#passwordChangeModal">Zmień Hasło</button>
+            <button class="btn btn-primary btn-sm  m-2" data-bs-toggle="modal" data-bs-target="#editAccountModal">Edytuj dane konta </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--------------------------------------------- MODAL PASSWORD -->
+<div class="modal" tabindex="-1" id="passwordChangeModal" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Zmiana hasła</h5>
+      </div>
+      <div class="modal-body">
+
+        <form id="passwordChangeForm" [formGroup]="changePasswordForm">
+
+          <!--ALERTY-->
+          <div *ngIf="changePasswordSuccess" class="alert alert-success">
+            Hasło zostało pomyślnie zmienione.
+          </div>
+
+          <div *ngIf="changePasswordForm.errors?.['notSame'] && (submittedPassword)">
+            <p class="text-danger">Hasła nie są takie same.</p>
+          </div>
+
+          <div *ngIf="changePasswordForm.get('newPassword')?.errors?.['minlength'] && submittedPassword">
+            <p class="text-danger">Hasło musi mieć minimum 8 znaków.</p>
+          </div>
+
+          <div *ngIf="changePasswordForm.get('oldPassword')?.errors?.['required'] && (submittedPassword)">
+            <p class="text-danger">Stare hasło jest wymagane.</p>
+          </div>
+
+          <div *ngIf="changePasswordForm.get('newPassword')?.errors?.['required'] && (submittedPassword)">
+            <p class="text-danger">Nowe hasło jest wymagane.</p>
+          </div>
+
+          <div *ngIf="changePasswordForm.get('newPasswordRepeat')?.errors?.['required'] && (submittedPassword)">
+            <p class="text-danger">Potwierdzenie nowego hasła jest wymagane.</p>
+          </div>
+
+          <!--INPUTY-->
+          <div class="mb-3">
+            <label for="currentPassword" class="form-label">Podaj stare hasło</label>
+            <input type="password" formControlName="oldPassword" class="form-control" id="currentPassword">
+          </div>
+          <div class="mb-3">
+            <label for="newPassword" class="form-label">Podaj nowe hasło</label>
+            <input type="password" formControlName="newPassword" class="form-control" id="newPassword">
+          </div>
+          <div class="mb-3">
+            <label for="confirmNewPassword" class="form-label">Potwierdź nowe hasło</label>
+            <input type="password" formControlName="newPasswordRepeat" class="form-control" id="confirmNewPassword">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModalPassword()">Cofnij</button>
+        <button type="submit" form="passwordChangeForm" class="btn btn-primary" [disabled]="changePasswordSuccess" (click)="changePassword()">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--------------------------------------------- MODAL DO EDYCJI DANYCH KONTA -->
+<div class="modal" id="editAccountModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edycja danych konta</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editAccountForm">
+
+          <!--ALERTY-->
+          <div *ngIf="changeAccountSuccess" class="alert alert-success">
+            Konto zostało zaktualizowane pomyślnie
+          </div>
+
+          <div *ngIf="editAccountForm.get('firstname')?.errors?.['required'] && (submittedAccount)">
+            <p class="text-danger">Imię jest wymagane</p>
+          </div>
+
+          <div *ngIf="editAccountForm.get('lastname')?.errors?.['required'] && (submittedAccount)">
+            <p class="text-danger">Nazwisko jest wymagane</p>
+          </div>
+
+          <!--INPUTY-->
+          <div class="mb-3">
+            <label for="firstname">Imię</label>
+            <input type="text" formControlName="firstname" class="form-control" id="firstname">
+          </div>
+
+          <div class="mb-3">
+            <label for="lastname">Nazwisko</label>
+            <input type="text" formControlName="lastname" class="form-control" id="lastname">
+          </div>
+
+          <div class="mb-3">
+            <label for="city">Miasto</label>
+            <input type="text" formControlName="city" class="form-control" id="city">
+          </div>
+
+          <div class="mb-3">
+            <label for="bio" class="form-label">Opis</label>
+            <textarea formControlName="bio" class="form-control" id="bio" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3 form-check">
+            <label class="form-check-label" for="isPublicAccount">Konto publiczne</label>
+            <input type="checkbox" formControlName="isPublicAccount" class="form-check-input" id="isPublicAccount">
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModalAccount()">Zamknij</button>
+        <button type="button" class="btn btn-primary" (click)="changeAccountDetails()" [disabled]="changeAccountSuccess">Zapisz zmiany</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
