@@ -1,0 +1,85 @@
+<div class="container mt-4" *ngIf="reading">
+  <div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+      <h2>{{ reading.title }}</h2>
+      <div class="text-content mt-3">
+        <ng-container *ngFor="let fragment of processedContent">
+          <span [ngClass]="{'highlight': fragment.highlight}">{{ fragment.text }}</span>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Podział na kolumny dla pytań -->
+  <div class="row mt-4 justify-content-center">
+    <!-- Pierwsza kolumna z połową pytań -->
+    <div class="col-md-4">
+      <div *ngFor="let questionWithAnswers of questionWithAnswers; let i = index">
+        <div *ngIf="i % 2 === 0" class="mb-3">
+          <span style="white-space: nowrap;"><strong>Pytanie {{ i + 1 }}:</strong> {{ questionWithAnswers.questionText }}</span>
+          <button type="button" class="btn mb-1" style="color: mediumpurple; flex-shrink: 0;" (click)="xpp(questionWithAnswers.questionId)">
+            <i class="fa fa-question-circle"></i>
+          </button>
+          <div *ngFor="let answer of questionWithAnswers.answers" class="form-check">
+            <input class="form-check-input" type="radio" name="question{{ i }}" id="answer{{ answer.answerId }}"
+                   (click)="onAnswerSelect(questionWithAnswers.questionId, answer.answerId)"
+                   [disabled]="questionWithAnswers.answered">
+            <label class="form-check-label" for="answer{{ answer.answerId }}"
+                   [ngClass]="{'text-success': questionWithAnswers.answered && answer.correct,
+                               'text-danger': questionWithAnswers.answered && !answer.correct && questionWithAnswers.userCorrect === false && answer.answerId === userAnswers.get(questionWithAnswers.questionId)}">
+              {{ answer.answerText }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Druga kolumna z drugą połową pytań -->
+    <div class="col-md-4">
+      <div *ngFor="let questionWithAnswers of questionWithAnswers; let i = index">
+        <div *ngIf="i % 2 !== 0" class="mb-3">
+          <span style="white-space: nowrap;"><strong>Pytanie {{ i + 1 }}:</strong> {{ questionWithAnswers.questionText }}</span>
+          <button type="button" class="btn mb-1" style="color: mediumpurple; flex-shrink: 0;" (click)="xpp(questionWithAnswers.questionId)">
+            <i class="fa fa-question-circle"></i>
+          </button>
+          <div *ngFor="let answer of questionWithAnswers.answers" class="form-check">
+            <input class="form-check-input" type="radio" name="question{{ i }}" id="answer{{ answer.answerId }}"
+                   (click)="onAnswerSelect(questionWithAnswers.questionId, answer.answerId)"
+                   [disabled]="questionWithAnswers.answered">
+            <label class="form-check-label" for="answer{{ answer.answerId }}"
+                   [ngClass]="{'text-success': questionWithAnswers.answered && answer.correct,
+                               'text-danger': questionWithAnswers.answered && !answer.correct && questionWithAnswers.userCorrect === false && answer.answerId === userAnswers.get(questionWithAnswers.questionId)}">
+              {{ answer.answerText }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kolumna ze słowniczkiem -->
+    <div class="col-md-4">
+      <h5>Słowniczek:</h5>
+      <ul class="list-unstyled">
+        <li *ngFor="let wordDictionary of wordsDictionaries">
+          {{ wordDictionary.word }} - {{ wordDictionary.translation}}
+          <button type="button" class="btn mb-1"  style="color: mediumpurple" (click)="wordDictionary.showDefinition = !wordDictionary.showDefinition">
+            <i class="fa fa-question-circle"></i>
+          </button>
+          <div *ngIf="wordDictionary.showDefinition" class="alert alert-info mt-2">
+            {{ wordDictionary.definition }}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Komunikat błędu i przycisk -->
+  <div class="row justify-content-center mt-5">
+    <div *ngIf="showMessage" class="alert alert-danger text-center col-md-8">
+      Musisz odpowiedzieć na wszystkie pytania żeby sprawdzić odpowiedzi!
+    </div>
+    <div class="col-md-8 text-center">
+      <button class="btn btn-primary" (click)="checkAnswers()">Sprawdź odpowiedzi</button>
+    </div>
+  </div>
+</div>

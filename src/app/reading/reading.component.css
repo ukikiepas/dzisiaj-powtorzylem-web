@@ -1,0 +1,23 @@
+.text-content p {
+  text-align: justify;
+}
+
+.form-check-label {
+  margin-left: 0.5rem;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.highlight {
+  background-color: yellow;
+}

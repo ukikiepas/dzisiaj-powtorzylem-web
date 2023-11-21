@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IrregularVerbDtoResponse, IrregularVerb} from "./models/irregular.interface";
 import {IrregularService} from "./services/irregular.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
