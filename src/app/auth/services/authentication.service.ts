@@ -4,6 +4,7 @@ import {BehaviorSubject, catchError, Observable, throwError} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {User} from "../../account/models/user.interface";
 import {RoutePaths} from "../../models/route-paths.enum";
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -80,4 +81,18 @@ export class AuthenticationService {
       })
     );
   }
+
+    getUsernameFromToken(): string | undefined {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+            const payload = token.split('.')[1];
+            const decodedPayload = atob(payload);
+            const payloadObj = JSON.parse(decodedPayload);
+            return payloadObj.sub; // Zwróć uwagę, że używamy 'sub' zamiast 'username'
+        }
+        return undefined;
+    }
+
+
+
 }

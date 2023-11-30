@@ -16,6 +16,7 @@ import { AccountComponent } from './account/account.component';
 import { ReadingComponent } from './reading/reading.component';
 import { ReadingSelectionComponent } from './reading/reading-selection/reading-selection.component';
 import { FilterByLevelPipe } from './reading/reading-selection/filters/filter-by-level.pipe';
+import {CommentsModule} from "./utlis/comments/comments.module";
 
 
 const routes: Routes = [
@@ -41,7 +42,7 @@ const routes: Routes = [
     AccountComponent,
     ReadingComponent,
     ReadingSelectionComponent,
-    FilterByLevelPipe
+    FilterByLevelPipe,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,8 @@ const routes: Routes = [
     FormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommentsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
