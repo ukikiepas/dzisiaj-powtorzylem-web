@@ -9,26 +9,38 @@ import {ActiveCommentInterface} from "../../models/activeCommentInterface";
 })
 export class CommentComponent implements OnInit{
 
-    canEdit: boolean = false;
-    canDelete: boolean = false;
-    activeCommentType = ActiveCommentTypeEnum;
-    replyId: number | null= null;
-
-    @Input() username: string | undefined;
+    @Input() currentUsername: string | undefined;
     @Input() comment!: CommentInterface;
     @Input() replies!: CommentInterface[];
     @Input() activeComment!: ActiveCommentInterface | null;
     @Input() parentId: number | null = null;
 
     @Output() setActiveComment = new EventEmitter<ActiveCommentInterface | null>;
+
     @Output() addComment = new EventEmitter<{
-        text: string;
-        parentId: number | null ;
+      text: string;
+      parentId: number | null ;
     }>();
 
+    @Output() updateComment = new EventEmitter<{
+      text: string;
+      commentId: number;
+    }>();
+
+    @Output() deleteComment = new EventEmitter<number>();
+
+
+    canEdit: boolean = false;
+    canDelete: boolean = false;
+    activeCommentType = ActiveCommentTypeEnum;
+    replyId: number | null = null;
+
+
+
+
     ngOnInit(): void {
-      this.canEdit = this.username === this.comment?.username && this.replies?.length===0;
-      this.canDelete = this.username === this.comment?.username && this.replies?.length===0;
+      this.canEdit = this.currentUsername === this.comment?.username && this.replies?.length===0;
+      this.canDelete = this.currentUsername === this.comment?.username && this.replies?.length===0;
       this.replyId = this.parentId ? this.comment.commentId : null ;
     }
 
@@ -36,30 +48,19 @@ export class CommentComponent implements OnInit{
         if(!this.activeComment){
             return false;
         }
-
         return (
             this.activeComment.id === this.comment?.commentId &&
             this.activeComment.type === this.activeCommentType.replying
         );
     }
 
-    setReplyActiveComment(): void {
-       console.log(this.comment + "XDDD" + this.comment.commentId)
-        if (this.comment && this.comment.commentId !== undefined) {
-            this.setActiveComment.emit({
-                id: this.comment.commentId,
-                type: this.activeCommentType.replying
-            });
+    isEditing(): boolean {
+        if(!this.activeComment){
+            return false;
         }
+        return (
+            this.activeComment.id === this.comment?.commentId &&
+            this.activeComment.type === this.activeCommentType.editing
+        );
     }
-
-    setEditActiveComment(): void {
-        if (this.comment && this.comment.commentId !== undefined) {
-            this.setActiveComment.emit({
-                id: this.comment.commentId,
-                type: this.activeCommentType.editing
-            });
-        }
-    }
-
 }

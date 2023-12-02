@@ -4,10 +4,11 @@ main {
 
 .comments {
   margin-top: 20px;
+  margin-left: 20px;
 }
 
 .comments-title {
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
@@ -55,8 +56,20 @@ main {
 }
 
 .comment-image-container {
+  width: 50px; /* Ustawia szerokość kontenera obrazu */
+  height: 50px; /* Ustawia wysokość kontenera obrazu */
+  border-radius: 50%; /* Sprawia, że kontener obrazu jest okrągły */
+  overflow: hidden; /* Ukrywa cześci obrazu, które wystają poza kontener */
   margin-right: 12px;
+  margin-top: 20px;
 }
+
+.comment-image-container img {
+  width: 100%; /* Powoduje, że obraz wypełni kontener */
+  height: 100%; /* Powoduje, że obraz wypełni kontener */
+  object-fit: cover; /* Zapewnia, że obraz pokryje obszar bez deformacji */
+}
+
 
 .comment-image-container img {
   border-radius: 50px;
@@ -98,4 +111,79 @@ main {
 
 .replies {
   margin-top: 20px;
+}
+.comment-box-container {
+  max-width: 300px; /* maksymalna szerokość obszaru komentarza */
+  border-radius: 8px; /* zaokrąglone rogi */
+}
+
+.comment-label {
+  display: block; /* sprawia, że label jest w nowej linii */
+  margin-bottom: 10px; /* odstęp między labelem a textarea */
+  color: #333; /* kolor tekstu */
+  font-size: 15px; /* rozmiar czcionki */
+}
+
+.comment-textarea {
+  width: 100%; /* szerokość na cały kontener */
+  height: 60px; /* wysokość obszaru tekstowego */
+  padding: 10px; /* padding wewnątrz obszaru tekstowego */
+  border: 1px solid #d1d1d1; /* cienka, solidna obramówka */
+  border-radius: 4px; /* lekko zaokrąglone rogi dla obszaru tekstowego */
+  margin-bottom: 10px; /* odstęp między textarea a przyciskami */
+  resize: vertical; /* pozwala użytkownikowi zmieniać rozmiar pionowo */
+  font-size: 16px; /* rozmiar czcionki w textarea */
+}
+
+.comment-box-actions {
+  text-align: left; /* wyrównanie przycisków do prawej */
+}
+
+.comment-submit-btn, .comment-cancel-btn {
+  padding: 8px 16px; /* padding wokół tekstu w przycisku */
+  border: none; /* brak obramówki */
+  border-radius: 6px; /* zaokrąglone rogi przycisków */
+  cursor: pointer; /* kursor wskazujący */
+  font-size: 12px; /* rozmiar czcionki */
+  transition: background-color 0.3s; /* animacja zmiany koloru tła */
+}
+
+.comment-submit-btn {
+  background-color: #5cb85c; /* zielony kolor tła */
+  color: white; /* biały kolor tekstu */
+}
+
+.comment-submit-btn:hover {
+  background-color: #4cae4c; /* ciemniejszy odcień zielonego przy najechaniu */
+}
+
+.comment-cancel-btn {
+  background-color: #f0f0f0; /* szary kolor tła */
+  color: #333; /* kolor tekstu */
+}
+
+.comment-cancel-btn:hover {
+  background-color: #e0e0e0; /* ciemniejszy odcień szarego przy najechaniu */
+}
+
+.comment-date {
+  font-size: 12px;
+  color: rgb(128, 128, 128);
+  margin-top: 0px;
+}
+
+.show-comments-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  padding: 8px 16px; /* padding wokół tekstu w przycisku */
+  background-color: #007bff; /* Domyślny kolor bootstrap dla przycisków */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.show-comments-button:hover {
+  background-color: #0056b3; /* Ciemniejszy kolor dla hover */
 }

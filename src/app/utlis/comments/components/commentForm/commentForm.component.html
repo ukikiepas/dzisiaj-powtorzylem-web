@@ -1,13 +1,11 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <textarea class="comment-form-textarea" formControlName="title"></textarea>
-    <button class="comment-form-button"
-            type="submit"
-            [disabled]="form.invalid">
-        {{submitLabel}}
-    </button>
-    <button *ngIf="hasCancelButton"
-            type="button"
-            class="comment-form-button comment-form-cancel-button">
-        Cancel
-    </button>
-</form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="comment-box-container">
+        <label for="commentTextarea" class="comment-label">Napisz komentarz</label>
+        <textarea id="commentTextarea" class="comment-textarea" formControlName="title" placeholder=""></textarea>
+        <div class="comment-box-actions">
+          <button type="submit" class="comment-submit-btn" [disabled]="form.invalid">{{ submitLabel }}</button>
+          <button *ngIf="hasCancelButton" type="button" class="comment-cancel-btn" (click)="handleCancel.emit()">Cancel</button>
+        </div>
+      </div>
+  </form>
+

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import localePl from '@angular/common/locales/pl';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -17,6 +17,8 @@ import { ReadingComponent } from './reading/reading.component';
 import { ReadingSelectionComponent } from './reading/reading-selection/reading-selection.component';
 import { FilterByLevelPipe } from './reading/reading-selection/filters/filter-by-level.pipe';
 import {CommentsModule} from "./utlis/comments/comments.module";
+import {registerLocaleData} from "@angular/common";
+import {LOCALE_ID, NgModule} from "@angular/core";
 
 
 const routes: Routes = [
@@ -29,6 +31,7 @@ const routes: Routes = [
   { path: `reading/:readingId`, component: ReadingComponent}
 ];
 
+registerLocaleData(localePl);
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ const routes: Routes = [
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'pl' }
   ],
   bootstrap: [AppComponent]
 })
