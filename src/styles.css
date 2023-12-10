@@ -2,3 +2,8 @@
 @import 'bootstrap';
 @import 'font-awesome';
 @import 'src/app/utlis/comments/app.component.css';
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}

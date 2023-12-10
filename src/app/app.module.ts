@@ -11,7 +11,7 @@ import { FooterComponent } from './utlis/footer/footer.component'
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './homepage/home/home.component';
 import { IrregularComponent } from './irregular/irregular.component';
-import {JwtInterceptor} from "./auth/services/jwt-interceptor.service";
+import {JwtInterceptor} from "./auth/services/jwt-interceptor 2.service";
 import { AccountComponent } from './account/account.component';
 import { ReadingComponent } from './reading/reading.component';
 import { ReadingSelectionComponent } from './reading/reading-selection/reading-selection.component';

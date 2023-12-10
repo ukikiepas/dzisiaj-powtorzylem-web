@@ -1,18 +1,25 @@
 <div class="content-container" id="section0">
-  <div class="card-container">
-    <h2 class="header">Słówka dnia</h2>
-    <div class="card" *ngFor="let card of cards">
-      {{card.level}}
-      <button class="btn heart-button">
-        <fa-icon style="font-size: 20px" [icon]="faHeart"/>
-      </button>
-      <img [src]="card.imageLocation" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ card.word }} - {{card.translation}}</h5>
-        <p class="card-text">{{ card.definition }}</p>
+    <div class="card-container">
+      <h2 class="header">Słówka dnia</h2>
+      <div class="card-deck">
+        <!-- Tutaj użyj *ngFor, aby wygenerować karty -->
+        <div class="card" *ngFor="let card of cards">
+          <div class="card-header">
+            <div class="level">{{ card.level }}</div>
+            <div class="favorite">
+              <button class="btn heart-button">
+                <fa-icon style="font-size: 20px" [icon]="faHeart"></fa-icon>
+              </button>
+            </div>
+          </div>
+          <img [src]="card.imageLocation" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ card.word }} - {{card.translation}}</h5>
+            <p class="card-text">{{ card.definition }}</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
   <button class="scroll-down-button" (click)="scrollToSection('section1')" aria-label="Przewiń w dół">
     <fa-icon [icon]="faArrowDown"/>
   </button>
@@ -20,10 +27,10 @@
 </div>
 
 <!-- Sekcja z obrazem i tekstem -->
-<div id="section1"  class="container-fluid mt-5 content-container ">
+<section id="section1"  class="content-container ">
   <div class="row align-items-center">
     <div class="col-lg-6 p-0">
-      <img src="/assets/quairaing-540122.jpg" class="img-fluid w-100 h-100" alt="Opis obrazu">
+      <img src="/assets/quairaing-540122.jpg" class="img-fluid" alt="Opis obrazu">
     </div>
     <div class="col-lg-6 text-center d-flex flex-column justify-content-center">
       <div>
@@ -35,10 +42,10 @@
         <fa-icon [icon]="faArrowDown"/>
       </button>    </div>
   </div>
-</div>
+</section>
 
 <!-- Sekcja z obrazem i tekstem -->
-<div id="section2" class="container-fluid mt-5 content-container">
+<section id="section2" class="container-fluid mt-5 content-container">
   <div class="row align-items-center">
     <div class="col-lg-6 text-center d-flex flex-column justify-content-center">
       <div>
@@ -54,13 +61,13 @@
       <img src="/assets/school-683553.jpg" class="img-fluid w-100 h-100" alt="Opis obrazu">
     </div>
   </div>
-</div>
+</section>
 
 <!-- Sekcja z obrazem i tekstem -->
-<div id="section3" class="container-fluid mt-5 content-container">
+<section id="section3" class="container-fluid mt-5 content-container">
   <div class="row align-items-center">
     <div class="col-lg-6 p-0">
-      <img src="/assets/library-869061.jpg" class="img-fluid w-100 h-100" alt="Opis obrazu">
+      <img src="/assets/library-869061.jpg" class="img-fluid " alt="Opis obrazu">
     </div>
     <div class="col-lg-6 text-center d-flex flex-column justify-content-center">
       <div>
@@ -73,9 +80,9 @@
       </button>
     </div>
   </div>
-</div>
+</section>
 
-<div id="section4" class="container-fluid mt-5 content-container">
+<section id="section4" class="container-fluid mt-5 content-container">
 <!--  TODO ogarnac jakis formularz do wysylania maili xDP-->
   <div class="row align-items-center">
     <!-- Przycisk powrotu na górę strony -->
@@ -115,7 +122,7 @@
     </div>
     <div class="col-lg-6 p-0">
       <!-- Zdjęcie może pozostać jako element graficzny lub zostanie zastąpione logiem firmy -->
-      <img src="/assets/contactUs.jpg" class="img-fluid w-100 h-100" alt="Logo firmy">
+      <img src="/assets/contactUs.jpg" class="img-fluid " alt="Logo firmy">
     </div>
   </div>
-</div>
+</section>
