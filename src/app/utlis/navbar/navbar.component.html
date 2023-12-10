@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <!-- Logo - prowadzi do strony głównej -->
+  <a class="navbar-brand m-1 " href="/home">Dzisiaj powtórzyłem</a>
+
+  <!-- Hamburger menu dla wersji mobilnej -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <!-- Linki po lewej -->
+    <ul class="navbar-nav mr-auto left-side-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/zestawy">Zestawy</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/reading">Czytanki</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/blog">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/irregular">Nieregularne</a>
+      </li>
+    </ul>
+
+    <!-- Linki po prawej -->
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item right-side-nav left-side-nav">
+        <a class="nav-link" href="/account">Konto</a>
+      </li>
+      <li class="nav-item me-lg-3 ">
+        <button class="btn btn-outline-light" (click)="logout()">Wyloguj się</button>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,24 @@
+<div class="comments">
+  <h3 class="comments-title">Komentarze</h3>
+  <div class="comment-form-title"></div>
+  <comment-form
+    submitLabel="Opublikuj"
+    (handleSubmit)="addComment({text: $event, parentId: null})"
+  ></comment-form>
+  <div class="comments-container">
+    <comment
+      *ngFor="let comment of comments | slice:0:(showAllComments ? comments.length : maxCommentsToShow)"
+      [comment]="comment"
+      [currentUsername]="currentUsername"
+      [replies]="getReplies(comment.commentId)"
+      (setActiveComment)="setActiveComment($event)"
+      [activeComment]="activeComment"
+      (addComment)="addComment($event)"
+      (updateComment)="updateComment($event)"
+      (deleteComment)="deleteComment($event)"
+    ></comment>
+    <button *ngIf="comments.length > maxCommentsToShow" (click)="toggleCommentsVisibility()" class="show-comments-button">
+      {{ showAllComments ? 'Ukryj' : 'Pokaż wszystkie' }} komentarze
+    </button>
+  </div>
+</div>

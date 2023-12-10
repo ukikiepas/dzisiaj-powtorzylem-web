@@ -1,134 +1,259 @@
-.content-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f8f9fa;
-  color: #495057;
+
+.card-body {
+    flex-grow: 1; /* Pozwala .card-body wypełnić dostępną przestrzeń */
 }
 
 .header {
-  font-size: 3rem;
-  color: #4f4f4f;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-family: 'Arial', sans-serif;
+    margin-bottom: 1rem;
+    font-size: 3rem; /* Zwiększony rozmiar czcionki */
+    text-align: center;
+    color: #4f4f4f; /* Ciemny kolor tekstu */
+    font-family: 'Arial', sans-serif; /* Czcionka */
 }
 
 .card-container {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
+    background-color: #f9f9f9; /* Jasne tło dla kontenera kart */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Cień dookoła kontenera */
+    padding: 20px; /* Wewnętrzny odstęp dookoła kart */
+    margin: 20px auto; /* Centruje kontener i dodaje odstęp od górnej i dolnej części */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Rozkłada karty równomiernie */
+    gap: 25px; /* Dodaje przestrzeń pomiędzy kartami */
+    width: 100%; /* Ustawia szerokość kontenera kart na 100% */
+}
+
+/* Styl dla pojedynczych kart */
 .card {
-  width: calc(33.33% - 20px);
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  text-align: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+    width: 16rem; /* Zwiększona szerokość kart */
+    height: auto; /* Zwiększona szerokość kart */
+    margin: 25px; /* Zwiększony margines dookoła kart */
+    padding: 20px; /* Dodatkowy wewnętrzny odstęp w kartach */
+    background-color: #ffffff; /* Jasne tło karty */
+    border-radius: 8px; /* Zaokrąglone rogi kart */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* Subtelniejszy cień dla efektu głębi */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animacja dla efektu hover */
+    text-align: center;
+    flex: 0 1 calc(33.33% - 20px); /* Trzy karty w jednym rzędzie z odstępami */
+    margin-bottom: 20px; /* Margines na dole dla każdej karty */
+    display: flex;
+    flex-direction: row; /* Zmieniamy kierunek na wierszowy */
+    flex-wrap: wrap; /* Pozwala elementom przechodzić do nowego wiersza */
+    justify-content: space-around; /* Rozkłada karty równomiernie */
+    align-items: flex-start; /* Wyrównuje karty do góry */
+  box-sizing: border-box; /* Włącza border-box */
+  flex: 0 1 calc(33.33% - 20px); /* Trzy karty w jednym rzędzie */
+  margin-bottom: 20px; /* Margines na dole każdej karty */
 }
 
-.card-img-top {
-  height: 300px;
-  width: 100%;
-  object-fit: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.card-title, .card-text, .card-level {
-  text-align: center;
-}
-
-.heart-button {
-  background-color: transparent;
-  border: none;
-  color: #333;
-  cursor: pointer;
-  border-radius: 100%;
-  transition: color 0.3s ease;
-  font-size: 20px;
-}
-
-.heart-button:hover {
-  color: #c00;
-}
-
-.scroll-down-button, .scroll-up-button {
-  background-color: transparent;
-  border: none;
-  color: #333;
-  cursor: pointer;
-  padding: 10px;
-  transition: color 0.3s ease, transform 0.3s ease;
-  font-size: 2rem;
-}
-
-.scroll-down-button:hover, .scroll-down-button:focus,
-.scroll-up-button:hover, .scroll-up-button:focus {
-  color: rgba(89, 87, 87, 0.68);
-  transform: translateY(6px);
-}
-
-.scroll-down-button:active, .scroll-up-button:active {
-  transform: translateY(-4px);
-}
-
-.btn-social {
-  background-color: #ffffff;
-  color: #333333;
-  border: 1px solid #dddddd;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
-  transition: background-color 0.3s;
-}
-
-.btn-social:hover {
-  background-color: #0d6efd;
-  color: #ffffff;
-}
-
-.btn-instagram:hover {
-  background-color: #e86de0;
-  color: #ffffff;
-}
-
-.fa-icon {
-  pointer-events: none;
-}
-
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 600px) {
   .card {
-    width: calc(50% - 20px);
+    flex-basis: 100%; /* Karty zajmują całą dostępną szerokość na małych ekranach */
   }
 }
 
 @media screen and (max-width: 600px) {
-  .card-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .card {
-    width: 100%;
-    margin-bottom: 10px;
+    flex-basis: 100%; /* Karty zajmują całą dostępną szerokość na małych ekranach */
   }
+}
 
-  .card-img-top {
-    height: 200px;
-  }
+
+.card-text, .card-title {
+    font-size: 1.2rem; /* Zwiększony rozmiar czcionki dla tekstu */
+}
+
+.card-text-my {
+    color: #4f4f4f;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+}
+
+.card-level {
+    background-color: #f2f2f2; /* Lekko różne tło od reszty karty */
+    padding: 5px 10px; /* Dodatkowa przestrzeń wewnątrz */
+    text-align: center; /* Wyśrodkowany tekst */
+    font-weight: bold; /* Pogrubienie tekstu */
+    box-shadow: inset 0 4px 6px -3px rgba(0, 0, 0, 0.2); /* Subtelny cień wewnętrzny na górze */
+    border-bottom: 1px solid #ddd; /* Cienka linia oddzielająca od treści karty */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Lekkie powiększenie karty przy najechaniu */
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2); /* Zwiększenie cienia dla efektu uniesienia */
+}
+
+.card-img-top {
+    height: 300px; /* Zwiększona wysokość obrazu */
+    border-top-left-radius: 8px; /* Zaokrąglone rogi dla obrazu */
+    border-top-right-radius: 8px; /* Zaokrąglone rogi dla obrazu */
+}
+
+
+/* Styl dla urządzeń mobilnych */
+@media screen and (max-width: 600px) {
+    .card-container {
+        flex-direction: column;
+        overflow-x: hidden;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%; /* Karty zajmują całą dostępną szerokość */
+        margin-bottom: 10px; /* Dodaje margines na dole każdej karty */
+    }
+}
+
+.card-img-top {
+    padding: 1px;
+    width: 100%; /* Szerokość obrazu na 100% kontenera karty */
+    height: 200px; /* Stała wysokość dla wszystkich obrazów */
+    object-fit: cover; /* Zapewnia, że obraz będzie pokrywał całą dostępną przestrzeń bez utraty proporcji */
+    object-position: center; /* Centruje obraz w przypisanym obszarze */
+    border-radius: 0.25rem; /* Jeśli karty mają zaokrąglone rogi, dostosuj to do stylu kart */
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.img-fluid.w-100.h-100 {
+    object-fit: cover; /* Upewnia się, że obraz wypełnia kontener bez utraty proporcji */
+    min-height: 100vh; /* Minimalna wysokość obrazu to 100% wysokości viewportu */
+}
+
+.text-center.d-flex.flex-column.justify-content-center {
+    min-height: 100vh; /* Minimalna wysokość tekstowego kontenera, aby dopasować do obrazu */
+}
+
+
+#section0 {
+    min-height: 100vh; /* Ustaw wysokość sekcji na 100% wysokości okna przeglądarki */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Wyśrodkowanie treści w pionie */
+    align-items: center; /* Wyśrodkowanie treści w poziomie */
+}
+
+.scroll-down-button {
+    background-color: transparent; /* Przejrzyste tło */
+    border: none; /* Brak obramowania */
+    color: #333; /* Kolor ikony, dostosuj do kolorystyki strony */
+    font-size: 2rem; /* Wielkość ikony */
+    cursor: pointer; /* Kursor wskazujący przycisk */
+    padding: 10px; /* Padding wokół ikony */
+    transition: color 0.3s ease, transform 0.3s ease; /* Animacja dla interakcji */
+}
+
+.scroll-up-button {
+    margin-bottom: 20px;
+    background-color: transparent; /* Przejrzyste tło */
+    border: none; /* Brak obramowania */
+    color: #333; /* Kolor ikony, dostosuj do kolorystyki strony */
+    font-size: 2rem; /* Wielkość ikony */
+    cursor: pointer; /* Kursor wskazujący przycisk */
+    padding: 10px; /* Padding wokół ikony */
+    transition: color 0.3s ease, transform 0.3s ease; /* Animacja dla interakcji */
+}
+
+.scroll-down-button:hover, .scroll-down-button:focus {
+    color: rgba(89, 87, 87, 0.68); /* Zmiana koloru ikony przy najechaniu lub fokusie */
+    transform: translateY(6px); /* Subtelne przesunięcie ikony w dół */
+}
+
+.scroll-down-button:active {
+    transform: translateY(4px); /* Przesunięcie ikony w dół przy kliknięciu */
+}
+
+.scroll-up-button:hover, .scroll-down-button:focus {
+    color: rgba(89, 87, 87, 0.68); /* Zmiana koloru ikony przy najechaniu lub fokusie */
+    transform: translateY(-6px); /* Subtelne przesunięcie ikony w dół */
+}
+
+.scroll-up-button:active {
+    transform: translateY(-4px); /* Przesunięcie ikony w dół przy kliknięciu */
+}
+
+.heart-button {
+    background-color: transparent; /* Przejrzyste tło */
+    border: none; /* Brak obramowania */
+    color: #333; /* Domyślny kolor ikony */
+    cursor: pointer; /* Kursor przycisku */
+    border-radius: 100%; /* Okrągły kształt przycisku */
+    transition: color 0.3s ease; /* Animacja zmiany koloru */
+}
+
+.heart-button:hover {
+    color: #c00; /* Zmiana koloru ikony na czerwony przy najechaniu lub fokusie */
+}
+
+/* Usunięcie transformacji dla aktywnego stanu */
+.heart-button:active {
+    transform: none;
+}
+
+.content-container {
+    background-color: #f8f9fa; /* Jasne tło dla lekkiego kontrastu */
+    color: #495057; /* Ciemniejszy odcień szarości dla tekstu */
+    padding: 20px;
+}
+
+/* Styl dla nagłówka */
+h2 {
+    color: #4c454d; /* Niebieski kolor tekstu dla uwypuklenia tytułu */
+    margin-bottom: 1rem; /* Odstęp na dole */
+    font-size: 2.5rem; /* Większy rozmiar czcionki dla tytułu */
+    font-weight: bold; /* Pogrubienie tekstu */
+}
+
+/* Styl dla paragrafów */
+p {
+    font-size: 1.1rem; /* Delikatnie większa czcionka dla lepszej czytelności */
+    line-height: 1.6; /* Odstępy między liniami dla lepszej czytelności */
+    margin-bottom: 1rem; /* Odstęp na dole każdego paragrafu */
+}
+
+/* Styl dla przycisków mediów społecznościowych */
+.btn-social {
+    background-color: #ffffff; /* Białe tło dla przycisków */
+    color: #333333; /* Ciemny kolor tekstu dla ikon */
+    border: 1px solid #dddddd; /* Obramowanie przycisku */
+    border-radius: 50%; /* Koła przyciski */
+    width: 40px; /* Stała szerokość */
+    height: 40px; /* Stała wysokość */
+    margin: 0 10px; /* Odstępy między przyciskami */
+    transition: background-color 0.3s; /* Płynna zmiana tła */
+}
+
+.btn-social:hover {
+    background-color: #0d6efd; /* Kolor tła przy najechaniu */
+    color: #ffffff; /* Biały tekst przy najechaniu */
+}
+
+.btn-instagram:hover {
+    background-color: #e86de0; /* Różowe tło przy najechaniu dla Instagrama */
+    color: #ffffff; /* Biały tekst przy najechaniu */
+}
+
+.btn-x:hover {
+    background-color: #343434; /* Różowe tło przy najechaniu dla Instagrama */
+    color: #ffffff; /* Biały tekst przy najechaniu */
+}
+
+.btn-youtube:hover {
+    background-color: rgba(255, 50, 50, 0.72); /* Różowe tło przy najechaniu dla Instagrama */
+    color: #ffffff; /* Biały tekst przy najechaniu */
+}
+
+/* Styl dla ikon w przyciskach */
+.fa-icon {
+    pointer-events: none; /* Wyłączenie wskaźnika myszy dla ikon */
 }
