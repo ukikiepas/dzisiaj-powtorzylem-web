@@ -18,7 +18,7 @@ import { filter } from 'rxjs/operators';
     this.router.events.pipe(
       filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      if (event.url === '/login' || event.url === '/register') {
+      if (event.url === '/login' || event.url === '/register' || event.url ==='/landing' )  {
         this.showNavAndFooter = false;
       } else {
         this.showNavAndFooter = true;

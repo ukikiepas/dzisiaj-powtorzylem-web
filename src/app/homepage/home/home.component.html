@@ -1,46 +1,121 @@
-<div id="carouselExampleCaptions" class="carousel slide ">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-
-
-
-  <div class="carousel-inner">
-    <div class="carousel-item active c-item">
-      <img src="/assets/pexels-chris-schippers-427679.jpg" class="d-block w-100 c-img" alt="...">
-      <div class="carousel-caption top-0 mt-4">
-        <p class="mt-5 fs-3 text-uppercase">First slide label</p>
-        <h1 class="display-1 fw-bolder text-capitalize">DUPA</h1>
-        <button class="btn btn-primary px-4 py-2 fs-5 mt-5">xPP</button>
-      </div>
-    </div>
-    <div class="carousel-item c-item">
-      <img src="/assets/pexels-david-geib-3220846.jpg" class="d-block w-100 c-img" alt="...">
-      <div class="carousel-caption top-0 mt-6">
-        <p class="mt-5 fs-3 text-uppercase">First slide label</p>
-        <h1 class="display-1 fw-bolder text-capitalize">DUPA</h1>
-        <button class="btn btn-primary px-4 py-2 fs-5 mt-5">xPP</button>
-      </div>
-    </div>
-    <div class="carousel-item c-item">
-      <img src="/assets/pexels-pixabay-460672.jpg" class="d-block w-100 c-img" alt="...">
-      <div class="carousel-caption top-0 mt-4">
-        <p class="mt-5 fs-3 text-uppercase">First slide label</p>
-        <h1 class="display-1 fw-bolder text-capitalize">DUPA</h1>
-        <button class="btn btn-primary px-4 py-2 fs-5 mt-5">xPP</button>
+<div class="content-container" id="section0">
+  <div class="card-container">
+    <h2 class="header">Słówka dnia</h2>
+    <div class="card" *ngFor="let card of cards">
+      {{card.level}}
+      <button class="btn heart-button">
+        <fa-icon style="font-size: 20px" [icon]="faHeart"/>
+      </button>
+      <img [src]="card.imageLocation" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ card.word }} - {{card.translation}}</h5>
+        <p class="card-text">{{ card.definition }}</p>
       </div>
     </div>
   </div>
-
-
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
+  <button class="scroll-down-button" (click)="scrollToSection('section1')" aria-label="Przewiń w dół">
+    <fa-icon [icon]="faArrowDown"/>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+
+</div>
+
+<!-- Sekcja z obrazem i tekstem -->
+<div id="section1"  class="container-fluid mt-5 content-container ">
+  <div class="row align-items-center">
+    <div class="col-lg-6 p-0">
+      <img src="/assets/quairaing-540122.jpg" class="img-fluid w-100 h-100" alt="Opis obrazu">
+    </div>
+    <div class="col-lg-6 text-center d-flex flex-column justify-content-center">
+      <div>
+        <h2>Podróż Do Biegłości w Angielskim – Odkryj, Naucz się, Osiągnij</h2>
+        <p>W świecie, gdzie każde zdanie otwiera drzwi do nowych kultur i możliwości, znajomość języka angielskiego to klucz do sukcesu. Nie jest to tylko nauka gramatyki i słownictwa, to przede wszystkim podróż, która rozwija umysł i otwiera serce na różnorodność świata. Każde nowe słowo to szansa, aby zobaczyć świat z innej perspektywy, każda rozmowa to okazja do zbudowania mostu między kulturami. Angielski to nie tylko język, to narzędzie, które pozwala młodym odkrywcą przekształcić marzenia w realne cele. Zacznij swoją przygodę dzisiaj i pozwól, aby angielski był Twoim przewodnikiem po fascynującym świecie możliwości!</p>
+        <!-- Przyciski lub inne elementy interaktywne mogą być tutaj -->
+      </div>
+      <button class="scroll-down-button" (click)="scrollToSection('section2')" aria-label="Przewiń w dół">
+        <fa-icon [icon]="faArrowDown"/>
+      </button>    </div>
+  </div>
+</div>
+
+<!-- Sekcja z obrazem i tekstem -->
+<div id="section2" class="container-fluid mt-5 content-container">
+  <div class="row align-items-center">
+    <div class="col-lg-6 text-center d-flex flex-column justify-content-center">
+      <div>
+        <h2>Nawigacja przez Język Angielski – Efektywna Nauka, Realne Postępy</h2>
+        <p>Opanowanie języka angielskiego nie musi być zadaniem herkulesowym. Kluczem do skuteczności jest regularność i zaangażowanie. Zacznij od ustanowienia codziennych rutyn, które obejmują słuchanie, mówienie, czytanie i pisanie. Otocz się angielskim w każdej możliwej formie: oglądaj filmy, słuchaj muzyki, czytaj książki. Skorzystaj z aplikacji językowych, które ułatwią systematyczne powtórzenia i utrwalanie wiedzy. Nie bój się popełniać błędów – to naturalna część nauki. Znajdź partnera do konwersacji, który pomoże Ci przełamać bariery komunikacyjne. Ucz się fraz, nie pojedynczych słów, aby móc płynnie wyrażać swoje myśli. I przede wszystkim, pamiętaj, że każdy ma własne tempo nauki – celebrowanie małych zwycięstw utrzyma Twoją motywację na wysokim poziomie. Z każdym dniem będziesz coraz bliżej płynności i pewności siebie, które są na wyciągnięcie ręki. Zaczynaj każdy dzień z myślą, że jest to kolejny krok na Twojej ścieżce do mistrzostwa w angielskim.</p>
+        <!-- Przyciski lub inne elementy interaktywne mogą być tutaj -->
+      </div>
+      <button class="scroll-down-button" (click)="scrollToSection('section3')" aria-label="Przewiń w dół">
+        <fa-icon [icon]="faArrowDown"/>
+      </button>
+    </div>
+    <div class="col-lg-6 p-0">
+      <img src="/assets/school-683553.jpg" class="img-fluid w-100 h-100" alt="Opis obrazu">
+    </div>
+  </div>
+</div>
+
+<!-- Sekcja z obrazem i tekstem -->
+<div id="section3" class="container-fluid mt-5 content-container">
+  <div class="row align-items-center">
+    <div class="col-lg-6 p-0">
+      <img src="/assets/library-869061.jpg" class="img-fluid w-100 h-100" alt="Opis obrazu">
+    </div>
+    <div class="col-lg-6 text-center d-flex flex-column justify-content-center">
+      <div>
+        <h2>Klucz do Pamięci – Twoja Ścieżka do Mistrzostwa w Angielskim</h2>
+        <p>Stała praktyka i powtarzanie to fundamenty na drodze do biegłości w języku angielskim. Nasza aplikacja jest zaprojektowana, by umacniać te zasady, oferując szeroki zakres testów, które wyzwolą Twój potencjał językowy i pomogą utrwalić zdobytą wiedzę. Zanurz się w pasjonujących czytankach dostosowanych do Twojego poziomu, które nie tylko wzbogacą Twój zasób słów, ale także poprawią zrozumienie czytanego tekstu. Dzięki funkcji zapisywania nowo nauczonych słówek i fraz, a następnie ich systematycznej powtórce, nasza aplikacja zapewnia, że każde nowe słowo stanie się trwałą częścią Twojego językowego arsenału. Regularność jest kluczem do sukcesu, a dzięki codziennym przypomnieniom i spersonalizowanym planom nauki, nasze narzędzia zapewniają, że każda minuta spędzona z aplikacją przynosi Cię bliżej płynności w angielskim. Zacznij swoją przygodę z angielskim razem z nami, i obserwuj, jak Twoje umiejętności rosną z każdym dniem!</p>
+        <!-- Przyciski lub inne elementy interaktywne mogą być tutaj -->
+      </div>
+      <button class="scroll-down-button" (click)="scrollToSection('section4')" aria-label="Przewiń w dół">
+        <fa-icon [icon]="faArrowDown"/>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="section4" class="container-fluid mt-5 content-container">
+<!--  TODO ogarnac jakis formularz do wysylania maili xDP-->
+  <div class="row align-items-center">
+    <!-- Przycisk powrotu na górę strony -->
+    <div class="col-lg-6 text-center d-flex flex-column justify-content-center">
+      <button class="scroll-up-button" onclick="window.scrollTo(0, 0)" aria-label="Przewiń w górę">
+        <fa-icon [icon]="faArrowUp"></fa-icon>
+      </button>
+      <div>
+        <h2>Kontakt</h2>
+        <p>Dołącz do nas i zacznij swoją przygodę z angielskim już dziś!</p>
+        <!-- Informacje kontaktowe -->
+        <div class="contact-info">
+          <p><fa-icon [icon]="faPhone"></fa-icon> +48 123 456 789</p>
+          <div class="social-icons">
+            <!-- Ikony mediów społecznościowych jako przyciski -->
+            <button class="btn btn-social"
+                    onclick="window.location.href='https://facebook.com';">
+              <fa-icon [icon]="faFacebookF"></fa-icon>
+            </button>
+            <button class="btn btn-social btn-instagram"
+                    onclick="window.location.href='https://instagram.com';">
+              <fa-icon [icon]="faInstagram"></fa-icon>
+            </button>
+            <button class="btn btn-social btn-x"
+                    onclick="window.location.href='https://twitter.com';">
+              <fa-icon [icon]="faX"></fa-icon>
+            </button>
+            <button class="btn btn-social btn-youtube"
+                    onclick="window.location.href='https://youtube.com';">
+              <fa-icon [icon]="faYoutube"></fa-icon>
+            </button>
+
+            <!-- Dodaj więcej przycisków mediów społecznościowych według potrzeb -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 p-0">
+      <!-- Zdjęcie może pozostać jako element graficzny lub zostanie zastąpione logiem firmy -->
+      <img src="/assets/contactUs.jpg" class="img-fluid w-100 h-100" alt="Logo firmy">
+    </div>
+  </div>
 </div>

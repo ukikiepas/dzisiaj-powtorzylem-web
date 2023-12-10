@@ -19,11 +19,14 @@ import { FilterByLevelPipe } from './reading/reading-selection/filters/filter-by
 import {CommentsModule} from "./utlis/comments/comments.module";
 import {registerLocaleData} from "@angular/common";
 import {LOCALE_ID, NgModule} from "@angular/core";
+import {LandingComponent} from "./landing/landing/landing.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
+  { path: 'landing', component: LandingComponent},
   { path: 'home', component: HomeComponent},
   { path: 'irregular', component: IrregularComponent},
   { path: 'account', component: AccountComponent},
@@ -41,6 +44,7 @@ registerLocaleData(localePl);
     NavbarComponent,
     FooterComponent,
     HomeComponent,
+    LandingComponent,
     IrregularComponent,
     AccountComponent,
     ReadingComponent,
@@ -54,7 +58,13 @@ registerLocaleData(localePl);
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommentsModule
+    CommentsModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled', // lub 'top'
+      anchorScrolling: 'enabled',
+      // ... inne opcje
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

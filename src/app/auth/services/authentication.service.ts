@@ -4,7 +4,6 @@ import {BehaviorSubject, catchError, Observable, throwError} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {User} from "../../account/models/user.interface";
 import {RoutePaths} from "../../models/route-paths.enum";
-import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,134 @@
-.c-item {
-    height: 100vh;
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  color: #495057;
 }
 
-.c-img {
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
+.header {
+  font-size: 3rem;
+  color: #4f4f4f;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.card-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.card {
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-title, .card-text, .card-level {
+  text-align: center;
+}
+
+.heart-button {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  border-radius: 100%;
+  transition: color 0.3s ease;
+  font-size: 20px;
+}
+
+.heart-button:hover {
+  color: #c00;
+}
+
+.scroll-down-button, .scroll-up-button {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  padding: 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 2rem;
+}
+
+.scroll-down-button:hover, .scroll-down-button:focus,
+.scroll-up-button:hover, .scroll-up-button:focus {
+  color: rgba(89, 87, 87, 0.68);
+  transform: translateY(6px);
+}
+
+.scroll-down-button:active, .scroll-up-button:active {
+  transform: translateY(-4px);
+}
+
+.btn-social {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  transition: background-color 0.3s;
+}
+
+.btn-social:hover {
+  background-color: #0d6efd;
+  color: #ffffff;
+}
+
+.btn-instagram:hover {
+  background-color: #e86de0;
+  color: #ffffff;
+}
+
+.fa-icon {
+  pointer-events: none;
+}
+
+@media screen and (max-width: 990px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .card-img-top {
+    height: 200px;
+  }
 }

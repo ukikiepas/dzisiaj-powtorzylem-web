@@ -4,4 +4,5 @@ export enum RoutePaths {
   HOME = '/home',
   REGISTER = '/register',
   ACCOUNT = '/account',
+  LANDING = '/landing',
 }
