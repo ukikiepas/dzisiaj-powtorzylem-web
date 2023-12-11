@@ -21,6 +21,8 @@ import {registerLocaleData} from "@angular/common";
 import {LOCALE_ID, NgModule} from "@angular/core";
 import {LandingComponent} from "./landing/landing/landing.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
+import {VocabsetComponent} from "./vocabset/vocabset.component";
 
 
 const routes: Routes = [
@@ -50,6 +52,7 @@ registerLocaleData(localePl);
     ReadingComponent,
     ReadingSelectionComponent,
     FilterByLevelPipe,
+    VocabsetComponent
   ],
   imports: [
     BrowserModule,
@@ -59,12 +62,12 @@ registerLocaleData(localePl);
     HttpClientModule,
     ReactiveFormsModule,
     CommentsModule,
-    BrowserAnimationsModule,
     RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'enabled', // lub 'top'
+      scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
-      // ... inne opcje
     }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

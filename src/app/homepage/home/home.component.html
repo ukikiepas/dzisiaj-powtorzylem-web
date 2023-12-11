@@ -7,8 +7,8 @@
           <div class="card-header">
             <div class="level">{{ card.level }}</div>
             <div class="favorite">
-              <button class="btn heart-button">
-                <fa-icon style="font-size: 20px" [icon]="faHeart"></fa-icon>
+              <button class="btn heart-button" (click)="toggleFavourite(card)">
+                <fa-icon [icon]="card.isFavourited ? fasHeart : faHeart" [ngClass]="{'favourite': card.isFavourited}" style="font-size: 20px"></fa-icon>
               </button>
             </div>
           </div>

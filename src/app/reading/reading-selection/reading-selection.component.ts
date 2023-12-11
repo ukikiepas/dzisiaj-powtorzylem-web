@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {Reading} from "../models/reading.interface";
-import {ReadingService} from "../services/reading.service";
 import {ReadingSelectionService} from "./services/reading-selection.service";
 
 @Component({
@@ -9,7 +8,7 @@ import {ReadingSelectionService} from "./services/reading-selection.service";
   templateUrl: './reading-selection.component.html',
   styleUrls: ['./reading-selection.component.css']
 })
-export class ReadingSelectionComponent {
+export class ReadingSelectionComponent implements OnInit{
 
   selectedLevel = 'A1';
   readings!:Reading[];

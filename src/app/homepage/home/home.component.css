@@ -84,12 +84,12 @@ section {
 
 .card-img-top {
   width: 100%; /* Obrazek na pełną szerokość karty */
-  height: auto; /* Wysokość auto, aby zachować proporcje */
+  height: 200px; /* Wysokość auto, aby zachować proporcje */
   object-fit: cover;
 }
 
 .card-body {
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 
@@ -253,4 +253,8 @@ section {
   transition: color 0.3s ease;
 }
 
+
+.favourite {
+  color: #de0101;
+}
 
