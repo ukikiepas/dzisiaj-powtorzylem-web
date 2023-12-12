@@ -1,0 +1,113 @@
+.card {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: none; /* Usuń obramowanie */
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.card .card-body {
+  text-align: center;
+  padding: 2rem; /* Zwiększ wewnętrzny margines */
+  border-radius: 0.5rem; /* Zaokrąglenie rogów */
+}
+
+.card .fa-icon {
+  font-size: 6rem; /* Zwiększ rozmiar ikon */
+  margin-bottom: 1rem;
+  color: #17a2b8; /* Bootstrapowy kolor 'info' dla ikon */
+}
+
+.card-title {
+  color: #007bff; /* Bootstrapowy kolor 'primary' dla tytułów */
+  font-size: 1.5rem;
+}
+
+.card-text {
+  color: #6c757d; /* Bootstrapowy kolor 'secondary' dla tekstu */
+}
+
+/* Karty */
+.card:nth-child(1) .card-body {
+  background-color: #e9ecef; /* Bootstrapowy kolor 'light' dla tła */
+}
+
+.card:nth-child(2) .card-body {
+  background-color: #e2e6ea; /* Nieco ciemniejszy kolor dla kontrastu */
+}
+
+.card:nth-child(3) .card-body {
+  background-color: #dae0e5; /* Jeszcze ciemniejszy dla różnorodności */
+}
+
+/* Styl Flexbox do wyśrodkowania zawartości */
+.container > .row {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Zmienione z center na start dla lepszego dopasowania */
+}
+
+/* Responsywność dla średnich ekranów, np. tabletów */
+@media (max-width: 768px) { /* Zmienione z 1024px na 768px */
+  .container > .row {
+    flex-direction: column;
+  }
+  .card .fa-icon {
+    font-size: 4rem; /* Opcjonalnie, dopasuj rozmiar ikon */
+  }
+
+  .card .card-body {
+    padding: 1.5rem; /* Opcjonalnie, dopasuj padding */
+  }
+
+  .card-title {
+    font-size: 1.8rem; /* Opcjonalnie, dopasuj rozmiar tekstu */
+  }
+
+  .card-text {
+    font-size: 1rem; /* Opcjonalnie, dopasuj rozmiar tekstu */
+  }
+
+  .container > .row {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card .fa-icon {
+    font-size: 3rem; /* Mniejszy rozmiar ikon dla urządzeń mobilnych */
+  }
+
+  .card .card-body {
+    padding: 1rem; /* Mniejszy padding dla urządzeń mobilnych */
+  }
+
+  .card-title {
+    font-size: 1.2rem; /* Mniejszy rozmiar tekstu dla urządzeń mobilnych */
+  }
+
+  .card-text {
+    font-size: 0.9rem; /* Mniejszy rozmiar tekstu dla urządzeń mobilnych */
+  }
+
+  .container > .row {
+    margin-top: 4rem;
+  }
+}
+
+@media (min-width: 1024px) { /* Dla dużych ekranów, np. laptopów i wyżej */
+  html, body {
+    margin: 0; /* Usuń zewnętrzne marginesy */
+    padding: 0; /* Usuń wewnętrzne marginesy */
+    border: 0; /* Usuń ramki */
+    max-height: 100vh;
+    overflow-y: hidden;
+  }
+  .container > .row {
+    margin-top: 10rem;
+  }
+}

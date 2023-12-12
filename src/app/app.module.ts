@@ -22,7 +22,7 @@ import {LOCALE_ID, NgModule} from "@angular/core";
 import {LandingComponent} from "./landing/landing/landing.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
-import {VocabsetComponent} from "./vocabset/vocabset.component";
+import {SethomeComponent} from "./vocabset/sets/sethome/sethome.component";
 
 
 const routes: Routes = [
@@ -33,7 +33,8 @@ const routes: Routes = [
   { path: 'irregular', component: IrregularComponent},
   { path: 'account', component: AccountComponent},
   { path: 'reading', component: ReadingSelectionComponent},
-  { path: `reading/:readingId`, component: ReadingComponent}
+  { path: `reading/:readingId`, component: ReadingComponent},
+  { path: `set-home`, component: SethomeComponent}
 ];
 
 registerLocaleData(localePl);
@@ -52,7 +53,7 @@ registerLocaleData(localePl);
     ReadingComponent,
     ReadingSelectionComponent,
     FilterByLevelPipe,
-    VocabsetComponent
+    SethomeComponent
   ],
   imports: [
     BrowserModule,
