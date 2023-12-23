@@ -1,5 +1,5 @@
 
-export interface VocabularyDtoInterface {
+export interface VocabularyDto {
   wordId: number,
   word: string,
   translation: string,

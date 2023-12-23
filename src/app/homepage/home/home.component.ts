@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {HomepageService} from "../services/homepage.service";
-import {VocabularyDtoInterface} from "../models/vocabularyDtoInterface";
+import {VocabularyDto} from "../models/vocabularyDto";
 import {ViewportScroller} from "@angular/common";
 import {faArrowDown, faArrowUp, faPhone, faX} from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -18,7 +18,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class HomeComponent implements OnInit{
 
-  cards: VocabularyDtoInterface[] = [];
+  cards: VocabularyDto[] = [];
   constructor(private homepageService: HomepageService, private viewportScroller: ViewportScroller, private toastr: ToastrService,private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit{
     this.viewportScroller.scrollToAnchor(sectionId);
   }
 
-  toggleFavourite(card: VocabularyDtoInterface): void {
+  toggleFavourite(card: VocabularyDto): void {
     const request$ = card.isFavourited
       ? this.homepageService.deleteFromFavourite(card.wordId)
       : this.homepageService.addToFavourite(card.wordId);

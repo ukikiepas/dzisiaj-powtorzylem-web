@@ -23,7 +23,10 @@ import {LandingComponent} from "./landing/landing/landing.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {SethomeComponent} from "./vocabset/sets/sethome/sethome.component";
-
+import {CreatesetComponent} from "./vocabset/sets/create/createset.component";
+import {SetComponent} from "./vocabset/sets/set/set.component";
+import {FindsetComponent} from "./vocabset/sets/findset/findset.component";
+import {DetailedViewSetComponent} from "./vocabset/sets/set/detailed-view-set/detailed-view-set.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,7 +37,11 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent},
   { path: 'reading', component: ReadingSelectionComponent},
   { path: `reading/:readingId`, component: ReadingComponent},
-  { path: `set-home`, component: SethomeComponent}
+  { path: `vocabulary-set`, component: SethomeComponent},
+  { path: `vocabulary-set/create-set`, component: CreatesetComponent},
+  { path: `vocabulary-set/find-set`, component: FindsetComponent},
+  { path: `vocabulary-set/sets`, component: SetComponent},
+  { path: `vocabulary-set/sets/:setId`, component: DetailedViewSetComponent}
 ];
 
 registerLocaleData(localePl);
@@ -68,11 +75,11 @@ registerLocaleData(localePl);
       anchorScrolling: 'enabled',
     }),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: LOCALE_ID, useValue: 'pl' }
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: LOCALE_ID, useValue: 'pl'}
   ],
   bootstrap: [AppComponent]
 })

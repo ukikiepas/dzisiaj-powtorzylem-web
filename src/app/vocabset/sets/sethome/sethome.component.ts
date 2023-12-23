@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {faPlusCircle} from "@fortawesome/free-solid-svg-icons/faPlusCircle";
-import {faArrowDown, faFolderOpen} from "@fortawesome/free-solid-svg-icons";
+import {faFolderOpen} from "@fortawesome/free-solid-svg-icons";
 import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
 
 @Component({

@@ -1,1 +1,81 @@
-<p>createset works!</p>
+
+<div class="container mt-4">
+  <h2>Utwórz nowy zestaw słówek</h2>
+  <form [formGroup]="createSetForm" (ngSubmit)="onSubmit()">
+
+    <!--Zestaw -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Tytuł zestawu</label>
+      <input type="text" class="form-control" id="title" formControlName="title" placeholder="Wprowadź tytuł">
+    </div>
+    <button type="button" class="btn btn-primary btn-sm mb-2" (click)="toggleOptionalFields()">Pokaż/ukryj opcje</button>
+    <div id="optionalFields" class="collapse">
+      <div class="mb-3">
+        <label for="description" class="form-label">Opis (opcjonalnie)</label>
+        <textarea class="form-control" id="description" formControlName="description" rows="3" placeholder="Wprowadź opis"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Kategoria</label>
+        <select class="form-select" id="category" formControlName="category">
+          <option selected>Wybierz kategorię</option>
+          <option value="Podstawowe">Podstawowe</option>
+          <option value="Biznes">Biznes</option>
+          <option value="Edukacja">Edukacja</option>
+          <option value="Nauka">Nauka</option>
+          <option value="Technologia">Technologia</option>
+          <option value="Medycyna">Medycyna</option>
+          <option value="Prawo">Prawo</option>
+          <option value="Sztuka i Kultura">Sztuka i Kultura</option>
+          <option value="Podróże">Podróże</option>
+          <option value="Kulinaria">Kulinaria</option>
+          <option value="Sport">Sport</option>
+          <option value="Muzyka">Muzyka</option>
+          <option value="Moda">Moda</option>
+          <option value="Natura i Środowisko">Natura i Środowisko</option>
+          <option value="Hobby i Rozrywka">Hobby i Rozrywka</option>
+        </select>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="isPublic" formControlName="isPublic">
+        <label class="form-check-label" for="isPublic">Zestaw publiczny</label>
+      </div>
+    </div>
+
+    <!--Słówka -->
+    <div formArrayName="newVocabularies" class="mb-3 vocabContainer">
+      <div *ngFor="let vocab of vocabularies().controls; let i = index" [formGroupName]="i">
+        <div class="card mb-2">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">Słówko {{ i + 1 }}</h5>
+              <button type="button" class="btn btn-sm" style="color: red;font-size: 30px" (click)="removeVocabulary(i)"><fa-icon [icon]="faMinusCircle"/></button>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Słowo</label>
+              <input type="text" class="form-control" formControlName="word">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Tłumaczenie</label>
+              <input type="text" class="form-control" formControlName="translation">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Definicja (opcjonalnie)</label>
+              <input type="text" class="form-control" formControlName="definition">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Obraz (opcjonalnie)</label>
+              <input type="file" class="form-control" (change)="handleFileInput($event, i)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-sm" style="color: #40f540;font-size: 40px" (click)="addVocabulary()"><fa-icon [icon]="faPlusCircle"/></button>
+    </div>
+
+
+    <div>
+      <button type="submit" class="btn btn-primary">Utwórz zestaw</button>
+    </div>
+  </form>
+  <div #scrollTarget></div>
+</div>

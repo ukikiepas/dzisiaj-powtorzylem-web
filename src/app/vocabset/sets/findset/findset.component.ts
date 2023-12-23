@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './findset.component.html',
-  styleUrl: './findset.component.css'
+  styleUrls: ['./findset.component.css']
 })
 export class FindsetComponent {
 
