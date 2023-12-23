@@ -1,0 +1,107 @@
+<!-- Przyciski akcji -->
+<div class="row my-3" *ngIf="!showTest && !showResults && vocabularySet">
+  <div class="col text-center">
+    <button class="btn btn-primary me-2" (click)="toggleView()">{{ showFlashcards ? 'Lista' : 'Fiszki' }} </button>
+    <button class="btn btn-secondary me-2" (click)="startTest()">Test </button>
+    <button class="btn btn-success" (click)="onEditSet()">Edytuj </button>
+  </div>
+</div>
+
+<!-- Karuzela Fiszek -->
+<div *ngIf="showFlashcards && !showTest && !showResults && vocabularySet" id="flashcardCarousel" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item" *ngFor="let item of vocabularySet.vocabularyDtos; let i = index" [class.active]="i === 0">
+      <div class="flashcard" [class.flipped]="flipped[i]" (click)="toggleFlip(i)">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <h5>{{ item.word }}</h5>
+          </div>
+          <div class="flashcard-back">
+            <img *ngIf="item.imageLocation" [src]="item.imageLocation" alt="Obraz słówka">
+            <p class="translation">{{ item.translation }}</p>
+            <p class="definition">{{ item.definition }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#flashcardCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#flashcardCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </button>
+</div>
+
+
+<!-- Tabela ze słówkami -->
+<div *ngIf="!showFlashcards && !showTest && !showResults && vocabularySet" class="row">
+  <div class="col-lg-8 col-md-10 mx-auto"> <!-- Ograniczenie szerokości tabeli -->
+    <div class="table-responsive"> <!-- Bootstrapowa klasa zapewniająca responsywność tabeli -->
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nazwa słówka</th>
+          <th>Tłumaczenie</th>
+          <th>Definicja</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let slowko of vocabularySet.vocabularyDtos">
+          <td>{{ slowko.word }}</td>
+          <td>{{ slowko.translation }}</td>
+          <td>{{ slowko.definition }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Formularz testu, widoczny tylko gdy showTest jest true -->
+<!-- Treść zadania nad kartą testu -->
+<div *ngIf="showTest" class="test-instructions">
+  <p>Przetłumacz podane słówko na język angielski. Spróbuj przypomnieć sobie odpowiednie tłumaczenie i wpisz je w polu poniżej.</p>
+</div>
+<div *ngIf="showTest" class="test-card">
+  <div class="card">
+    <div class="card-header">
+      {{ vocabularySet.vocabularyDtos[currentTestIndex].translation }}
+    </div>
+    <div class="card-body">
+      <input type="text" [(ngModel)]="userAnswer">
+      <button (click)="submitAnswer(userAnswer)">Następne</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Wyniki Testu -->
+<div *ngIf="showResults" class="test-results">
+  <h2>Twoje Wyniki</h2>
+  <p>Wynik: {{ score }}/{{ vocabularySet.vocabularyDtos.length }} ({{ (score / vocabularySet.vocabularyDtos.length * 100).toFixed(2) }}%)</p>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Słówko</th>
+      <th>Twoja odpowiedź</th>
+      <th>Poprawna odpowiedź</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let word of vocabularySet.vocabularyDtos; let i = index">
+      <td>{{ word.translation }}</td>
+      <td [class.correct]="word.word.toLowerCase() === userAnswers[i].toLowerCase()"
+          [class.incorrect]="word.word.toLowerCase() !== userAnswers[i].toLowerCase()">
+        {{ userAnswers[i] }}
+      </td>
+      <td>{{ word.word }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="test-results-buttons">
+    <button class="btn btn-primary" (click)="retryTest()">Spróbuj ponownie</button>
+    <button class="btn btn-secondary" (click)="goBack()">Powrót</button>
+  </div>
+</div>

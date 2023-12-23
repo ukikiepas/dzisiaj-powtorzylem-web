@@ -1,0 +1,110 @@
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #000; /* Czarne tło dla ikon */
+  position: absolute;
+  top: 50%; /* Centruje przyciski w pionie */
+  transform: translateY(-50%); /* Zapewnia, że są dokładnie na środku w pionie */
+  z-index: 2; /* Upewnij się, że przyciski są nad innymi elementami */
+}
+
+/* Styl dla przycisku 'poprzedni' */
+.carousel-control-prev {
+  left: 100px; /* Przesuwa w lewo, blisko karty */
+}
+
+/* Styl dla przycisku 'następny' */
+.carousel-control-next {
+  right: 100px; /* Przesuwa w prawo, blisko karty */
+}
+
+
+/*TEST*/
+.test-card {
+  max-width: 600px; /* Zwiększ szerokość */
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.test-card .card-header {
+  font-size: 1.4em;
+  background: #f8f9fa;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.test-card .card-body {
+  padding: 20px;
+}
+
+.test-card .card-body input {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.test-card .card-body button {
+  width: 30%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.test-instructions {
+  max-width: 600px; /* Szerokość dopasowana do karty testu */
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #f0f0f0; /* Jasne tło dla wyróżnienia tekstu */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centrowanie tekstu */
+  font-size: 1.2em;
+  color: #333; /* Ciemniejszy kolor tekstu dla lepszej czytelności */
+}
+
+/*WYNIKI TESTU*/
+.test-results {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.test-results h2 {
+  margin-bottom: 15px;
+}
+
+.test-results p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+.test-results-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.test-results-buttons .btn {
+  margin: 0 10px; /* Dodaje marginesy pomiędzy przyciskami */
+}
