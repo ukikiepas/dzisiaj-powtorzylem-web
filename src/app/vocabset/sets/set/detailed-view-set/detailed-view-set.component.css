@@ -1,3 +1,106 @@
+/*NAGŁÓWEK INFO O SECIE */
+.set-title {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.68); /* Możesz dostosować kolor do swoich potrzeb */
+  margin-bottom: 0.5rem;
+}
+
+.set-description {
+  color: #6c757d; /* Subtelny kolor dla opisu */
+  font-size: 1.1rem;
+}
+
+/*FISZKI */
+
+.flashcard {
+  max-width: 400px;
+  max-height: 400px;
+  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  perspective: 1000px; /* Dodaje perspektywę dla efektu 3D */
+}
+
+#flashcardCarousel {
+  position: relative;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Ukrywa tył podczas obracania */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flashcard-front {
+  /* Style dla przodu fiszki */
+  font-size: 1.5em;
+}
+
+.flashcard-back {
+  /* Style dla tyłu fiszki */
+  font-size: 1.2em;
+  transform: rotateY(180deg); /* Obraca tył fiszki */
+  padding: 20px; /* Dodane wypełnienie dla lepszego rozmieszczenia treści */
+}
+
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg); /* Obraca fiszkę */
+}
+
+.flashcard-back img {
+  max-width: 200px; /* Zwiększona maksymalna szerokość obrazu */
+  max-height: 200px; /* Zwiększona maksymalna wysokość obrazu */
+  object-fit: cover; /* zapewnia, że obraz będzie pasował i zachowa proporcje */
+  border-radius: 5px; /* lekko zaokrąglone rogi dla obrazu */
+  margin-bottom: 15px;
+}
+
+/* Style dla tłumaczenia i definicji */
+.flashcard-back p.translation {
+  font-weight: bold; /* Pogrubienie dla tłumaczenia */
+  margin-bottom: 10px; /* Odstęp pomiędzy tłumaczeniem a definicją */
+}
+
+.flashcard-back p.definition {
+  font-style: italic; /* Kursywa dla definicji */
+}
+
+.carousel-control-prev, .carousel-control-next {
+  color: #007bff; /* kolor przycisków */
+}
+
+.table-responsive {
+  max-width: 700px; /* Ogranicz szerokość tabeli */
+  margin: auto; /* Wycentruj tabelę */
+}
+
+.table {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-control-prev, .carousel-control-next {
+  z-index: 2; /* Upewnij się, że przyciski są nad innymi elementami */
+}
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -108,3 +211,5 @@
 .test-results-buttons .btn {
   margin: 0 10px; /* Dodaje marginesy pomiędzy przyciskami */
 }
+
+

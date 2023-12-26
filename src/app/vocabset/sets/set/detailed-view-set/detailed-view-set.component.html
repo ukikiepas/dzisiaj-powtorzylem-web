@@ -1,3 +1,12 @@
+<!-- Informacje o zestawie -->
+<div class="row mb-4">
+  <div class="col text-center">
+    <h3 class="set-title">{{ vocabularySet.title }}</h3>
+    <p class="set-description" *ngIf="vocabularySet.description">{{ vocabularySet.description }}</p>
+  </div>
+</div>
+
+
 <!-- Przyciski akcji -->
 <div class="row my-3" *ngIf="!showTest && !showResults && vocabularySet">
   <div class="col text-center">

@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faMinusCircle} from "@fortawesome/free-solid-svg-icons";
 import {faPlusCircle} from "@fortawesome/free-solid-svg-icons/faPlusCircle";
@@ -8,6 +8,8 @@ import {SetsService} from "../../services/sets.service";
 import {CreateVocabularySetDto} from "./models/createset.interface";
 import {VocabularySet} from "../../models/sets.interface";
 import {EditSetService} from "../../../shared/services/reading-set.service";
+import {CATEGORIES} from "../../../utlis/dictionaries/categories.constant";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-createset',
@@ -16,6 +18,7 @@ import {EditSetService} from "../../../shared/services/reading-set.service";
     ReactiveFormsModule,
     NgForOf,
     FontAwesomeModule,
+    NgIf,
   ],
   templateUrl: './createset.component.html',
   styleUrls: ['./createset.component.css']
@@ -23,13 +26,15 @@ import {EditSetService} from "../../../shared/services/reading-set.service";
 export class CreatesetComponent implements OnInit{
   createSetForm!: FormGroup;
   isOptionalFieldsVisible = false;
-  editingSet: VocabularySet | null = null; // Zmienna przechowująca edytowany zestaw
+  editingSet: VocabularySet | null = null;
+  categories = CATEGORIES;
 
   @ViewChild('scrollTarget') scrollTarget!: ElementRef;
 
   constructor(private formBuilder: FormBuilder,
               private setsService: SetsService,
-              private editSetService: EditSetService) {}
+              private editSetService: EditSetService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.createSetForm = this.formBuilder.group({
@@ -95,7 +100,7 @@ export class CreatesetComponent implements OnInit{
       if (this.editingSet) {
         this.setsService.updateSet(createdSet).subscribe(
           response => {
-            console.log("Set updated successfully", response);
+            this.router.navigate(['/vocabulary-set/sets', this.editingSet?.id]);
           },
           error => {
             console.error("Error updating set", error);
@@ -104,7 +109,7 @@ export class CreatesetComponent implements OnInit{
       } else {
         this.setsService.createSet(createdSet).subscribe(
           response => {
-            console.log("Set created successfully", response);
+            this.router.navigate(['/vocabulary-set/sets', response.data]);
           },
           error => {
             console.error("Error creating set", error);
@@ -143,7 +148,7 @@ export class CreatesetComponent implements OnInit{
         if (index < vocabulariesArray.length) {
           const vocabularyGroup = vocabulariesArray.at(index) as FormGroup;
           vocabularyGroup.controls['imageLocation'].setValue(base64);
-        }``
+        }
       };
       reader.readAsDataURL(file);
     }
@@ -156,19 +161,21 @@ export class CreatesetComponent implements OnInit{
   }
 
   private fillFormWithSetData(set: VocabularySet): void {
-    // Wypełnienie formularza danymi z zestawu
     this.createSetForm.patchValue({
       id: set.id,
       title: set.title,
       description: set.description,
       category: set.category,
       isPublic: set.isPublic,
-      newVocabularies: [] // Zainicjalizowanie pustej tablicy
+      newVocabularies: [] // Usunięto inicjalizację pustą tablicą
     });
 
-    // Dodanie słówek do formularza
+    const vocabulariesArray = this.vocabularies();
+    vocabulariesArray.clear(); // Wyczyść obecną listę słówek
+
+    // Dodaj słówka z zestawu do formularza
     set.vocabularyDtos.forEach(vocab => {
-      this.vocabularies().push(this.formBuilder.group({
+      vocabulariesArray.push(this.formBuilder.group({
         wordId: vocab.wordId,
         word: vocab.word,
         translation: vocab.translation,
@@ -176,7 +183,12 @@ export class CreatesetComponent implements OnInit{
         imageLocation: vocab.imageLocation
       }));
     });
+
+    if (!set.id) {
+      vocabulariesArray.push(this.createVocabulary());
+    }
   }
+
 
 
 

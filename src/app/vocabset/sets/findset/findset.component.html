@@ -1,4 +1,47 @@
-<p>findset works!</p>
-TODO:
-tutaj zrobić żeby zawsze pokazywały się 4 losowe sety powiedzmy i jak użytkownik wpiszę jakąś frazę i naciśnię szukaj to podaje mu odpowiedzi
-w których tytule setu są te dane które napisał nawet +/-
+<div class="container mt-4">
+  <h2 class="header-text">Znajdź zestaw słówek</h2>
+  <form (ngSubmit)="onSearch()" class="row align-items-end">
+    <div class="col-md-8 mb-3">
+      <label for="searchTerm" class="form-label">Nazwa zestawu</label>
+      <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Wpisz nazwę zestawu">
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="category" class="form-label">Kategoria</label>
+      <select class="form-select" id="category" [(ngModel)]="selectedCategory" name="selectedCategory">
+        <option value="">Wszystkie kategorie</option>
+        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+      </select>
+    </div>
+    <div class="col-md-1 mb-3 d-grid">
+      <button type="submit" class="btn btn-primary btn-search">
+        <fa-icon [icon]="faSearch" class="me-2"></fa-icon>Szukaj
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="searchResults.length > 0" class="mt-4">
+      <div class="row">
+      <div *ngFor="let set of searchResults" class="col-12 mb-4">
+        <div class="card">
+          <h5 class="card-title">{{ set.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ set.category }}</h6>
+          <p class="card-text">Utworzony przez: {{ set.creator }}</p>
+          <p class="card-text">Data utworzenia: {{ set.creationDate | date }}</p>
+          <button class="btn btn-primary" (click)="viewSet(set.id)">Zobacz zestaw</button>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Page navigation" class="pagination-container">
+      <ul class="pagination justify-content-between">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+          <a class="page-link" (click)="onPrevPage()">Poprzednia</a>
+        </li>
+        <!-- Spacery mogą być użyte do wyśrodkowania paginacji, jeśli jest więcej elementów -->
+        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+        <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+          <a class="page-link" (click)="onNextPage()">Następna</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+.header-text{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.btn-search {
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  color: white;
+  background-color: #007bff;
+  border-color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-search:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.fa-icon {
+  font-size: 1.25rem;
+}
+
+.card {
+  max-width: 600px; /* Ograniczenie maksymalnej szerokości karty */
+  margin: auto; /* Automatyczne marginesy do wyśrodkowania karty */
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center; /* Wyśrodkowanie tekstu */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Wyśrodkowanie zawartości w pionie */
+  padding: 20px; /* Dodanie wewnętrznego marginesu dla karty */
+}
+
+.card-title {
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.card-subtitle {
+  color: #6c757d;
+  margin-bottom: 10px; /* Dodanie odstępu między tytułem a podtytułem */
+}
+
+.card-text {
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Paginacja */
+.pagination-container {
+  justify-content: center; /* Wyśrodkowanie zawartości w pionie */
+  display: flex;
+}
+
+.pagination {
+  width: 100%;
+  justify-content: space-between; /* Rozdziela elementy paginacji na oba końce kontenera */
+}
+
+.page-item {
+  margin: 0 25px; /* Zmniejsza odstęp między elementami paginacji */
+}
+
+.page-link {
+  color: #007bff;
+  cursor: pointer;
+  padding: .5rem .75rem; /* Zwiększa rozmiar przycisku */
+  font-size: 1.1rem; /* Zwiększa rozmiar tekstu */
+  min-width: 90px; /* Przykładowa minimalna szerokość dla przycisków */
+}
+
+.page-link:hover {
+  color: #0056b3;
+}
+
+.page-link.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.page-item:not(.disabled) .page-link:focus {
+  box-shadow: none; /* Usunięcie focus ring dla estetyki */
+}
+
+/* Styl dla średnich ekranów */
+@media (min-width: 768px) {
+  .pagination {
+    width: 80%;
+  }
+}
+
+/* Styl dla dużych ekranów */
+@media (min-width: 992px) {
+  .pagination {
+    width: 50%;
+  }
+}
+
+/*serduszko*/
+.heart-button {
+  background-color: transparent; /* No background for the heart button */
+  border: none;
+  color: #d00000;
+  cursor: pointer;
+  padding: 0.5rem; /* Padding around the heart icon */
+}
+
+.heart-button:hover {
+  color: #d00000;
+}
+
+.heart-button:active {
+  transform: none;
+}

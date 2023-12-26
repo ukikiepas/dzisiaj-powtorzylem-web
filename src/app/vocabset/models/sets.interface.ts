@@ -22,3 +22,11 @@ export interface Vocabulary {
   imageLocation: string;
   isFavourited: boolean;
 }
+
+export interface VocabularySetViewDto {
+  id: number;
+  title: string;
+  description: string;
+  creator: string;
+  creationDate: Date;
+}

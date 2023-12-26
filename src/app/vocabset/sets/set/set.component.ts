@@ -46,7 +46,7 @@ export class SetComponent implements OnInit{
   loadAllVocabularySets(): void {
     this.setsService.getAllForUser().subscribe(
       response => {
-        this.allVocabularySets = response;
+        this.allVocabularySets = response.data;
         console.log(this.allVocabularySets);
       },
       error => {
@@ -66,51 +66,6 @@ export class SetComponent implements OnInit{
     this.showResults = false;
   }
 
-  toggleFlip(index: number): void {
-    this.flipped[index] = !this.flipped[index];
-  }
-
-  toggleView(): void {
-    this.showFlashcards = !this.showFlashcards;
-  }
-
-  //test
-  startTest(): void {
-    this.showTest = true;
-    this.currentTestIndex = 0;
-    this.userAnswers = [];
-    this.score = 0;
-  }
-
-  retryTest(): void {
-    this.showResults = false;
-    this.startTest();
-  }
-
-  goBack(): void {
-    this.showResults = false;
-    this.showTest = false;
-    this.showFlashcards = false;
-  }
-
-  submitAnswer(answer: string): void {
-    answer = answer.trim() || "???";
-
-    const correctAnswer = this.vocabularySet.vocabularyDtos[this.currentTestIndex].word;
-    this.userAnswers.push(answer);
-
-    if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
-      this.score++;
-    }
-
-    if (this.currentTestIndex < this.vocabularySet.vocabularyDtos.length - 1) {
-      this.userAnswer = '';
-      this.currentTestIndex++;
-    } else {
-      this.showTest = false;
-      this.showResults = true;
-    }
-  }
 
   //edycja
   onEditSet(): void {

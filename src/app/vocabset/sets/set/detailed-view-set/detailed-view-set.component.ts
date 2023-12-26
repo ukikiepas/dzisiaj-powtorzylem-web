@@ -20,7 +20,6 @@ import {NgForOf, NgIf} from "@angular/common";
 export class DetailedViewSetComponent {
 
   //zestawy
-  allVocabularySets: VocabularySet[] = [];
   vocabularySet!: VocabularySet;
   //fiszki
   flipped: boolean[] = [];
@@ -53,28 +52,11 @@ export class DetailedViewSetComponent {
     console.log('xDDD');
     this.setsService.getSet(setId).subscribe(
       response => {
-        this.vocabularySet = response;
+        this.vocabularySet = response.data;
       }
     )
-  }
-
-  loadAllVocabularySets(): void {
-    this.setsService.getAllForUser().subscribe(
-      response => {
-        this.allVocabularySets = response;
-        console.log(this.allVocabularySets);
-      },
-      error => {
-        console.error("Error getting set", error);
-      }
-    );
-
     this.vocabularySet.vocabularyDtos.forEach(() => this.flipped.push(false));
-  }
-
-  selectVocabularySet(set: VocabularySet): void {
-    this.vocabularySet = set;
-    this.flipped = Array(set.vocabularyDtos.length).fill(false);
+    this.flipped = Array(this.vocabularySet.vocabularyDtos.length).fill(false);
     this.showFlashcards = false;
     this.showTest = false;
     this.showResults = false;
