@@ -1,0 +1,118 @@
+/*NAGŁÓWEK CZATU*/
+.chat-header {
+  background-color: #e1e1e1; /* Jasne tło dla nagłówka */
+  border-bottom: 1px solid #dee2e6; /* Linia oddzielająca nagłówek od treści */
+}
+
+.chat-title {
+  margin: 0;
+  font-weight: bold;
+  color: #333; /* Ciemniejszy kolor tekstu dla tytułu */
+}
+
+.chat-description {
+  margin: 0;
+  font-size: 0.9rem; /* Nieco mniejsza czcionka dla opisu */
+  color: #666; /* Jasny kolor tekstu dla opisu */
+}
+
+.chat-window {
+  width: 400px;
+  height: 700px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.message-input textarea {
+  resize: vertical; /* Pozwala użytkownikowi zmieniać rozmiar textarea tylko pionowo */
+  min-height: 2.4em; /* Domyślna wysokość dla dwóch linii tekstu */
+
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 0.25rem;
+  background-color: #f8f9fa;
+}
+
+.message.user {
+  background-color: #bcdac8;
+}
+
+.message.server {
+  background-color: #a4e0ef;
+}
+
+.message-input {
+  border-top: 1px solid #dee2e6;
+  padding: 10px;
+}
+
+.message-input input {
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+.message .message-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* This ensures that the message details take up the remaining space */
+}
+
+.message .message-sender {
+  font-weight: bold;
+}
+
+
+/*AWATARY*/
+.message .avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.message-content {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*button do czatu*/
+.chat-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #007bff; /* Kolor tła */
+  color: white; /* Kolor znaku zapytania */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); /* Cień dla efektu podnoszenia */
+  z-index: 9999; /* Upewnij się, że przycisk jest na wierzchu */
+}
+
+.chat-toggle-button:hover {
+  background-color: #0056b3; /* Ciemniejszy kolor tła */
+}
+
+

@@ -1,18 +1,36 @@
-<!-- Informacje o zestawie -->
-<div class="row mb-4">
-  <div class="col text-center">
-    <h3 class="set-title">{{ vocabularySet.title }}</h3>
-    <p class="set-description" *ngIf="vocabularySet.description">{{ vocabularySet.description }}</p>
+<div class="header-container">
+  <!-- MENU DLA OPERACJI -->
+  <div *ngIf="vocabularySet" class="set-actions settings-icon">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <fa-icon [icon]="faCog" class="fa-icon"></fa-icon>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li>
+          <button class="dropdown-item" (click)="onEditSet()" [disabled]="!isOwner(vocabularySet)">Edytuj</button>
+        </li>
+        <li>
+          <button class="dropdown-item" (click)="copySet(vocabularySet.id)" [disabled]="isOwner(vocabularySet)">Skopiuj zestaw</button>
+        </li>
+        <li>
+          <button class="dropdown-item" (click)="deleteSet()" [disabled]="!isOwner(vocabularySet)">Usuń zestaw</button>
+        </li>
+      </ul>
+    </div>
+
   </div>
+  <!-- NAGŁÓWEK -->
+  <h3 class="set-title">{{ vocabularySet.title }}</h3>
+  <p class="set-description" *ngIf="vocabularySet.description">{{ vocabularySet.description }}</p>
 </div>
 
 
-<!-- Przyciski akcji -->
+
+  <!-- Przyciski akcji -->
 <div class="row my-3" *ngIf="!showTest && !showResults && vocabularySet">
   <div class="col text-center">
     <button class="btn btn-primary me-2" (click)="toggleView()">{{ showFlashcards ? 'Lista' : 'Fiszki' }} </button>
     <button class="btn btn-secondary me-2" (click)="startTest()">Test </button>
-    <button class="btn btn-success" (click)="onEditSet()">Edytuj </button>
   </div>
 </div>
 

@@ -1,14 +1,43 @@
 /*NAGŁÓWEK INFO O SECIE */
+.header-container {
+  position: relative; /* Wymagane dla pozycjonowania absolutnego dzieci */
+  text-align: center; /* Wyśrodkowanie tekstu */
+  padding-top: 40px; /* Odstęp na górze dla ikony zębatki */
+}
+
+.settings-icon {
+  position: absolute; /* Pozycjonowanie absolutne względem kontenera */
+  top: 10px; /* Odległość od górnej krawędzi kontenera */
+  right: 10px; /* Odległość od prawej krawędzi kontenera */
+}
+
+.btn-settings{
+  font-size: 20px;
+}
+
 .set-title {
-  margin-top: 0.5rem;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.68); /* Możesz dostosować kolor do swoich potrzeb */
   margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.68);
 }
 
 .set-description {
-  color: #6c757d; /* Subtelny kolor dla opisu */
+  color: #6c757d;
   font-size: 1.1rem;
+}
+
+.btn[disabled] {
+  opacity: 0.5; /* Wyszarzenie zablokowanych przycisków */
+  cursor: not-allowed; /* Zmiana kursora na symbol "zabroniony" */
+}
+
+
+
+/* MENU DLA OPERACJI */
+
+.set-actions {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /*FISZKI */

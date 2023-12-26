@@ -1,0 +1,33 @@
+<div class="chat-window" *ngIf="!isChatOpen">
+  <div class="chat-header d-flex flex-column justify-content-center text-center p-2">
+    <h5 class="chat-title">Czat GPT 3.5</h5>
+    <p class="chat-description">Rozmowa z sztuczną inteligencją</p>
+  </div>
+  <div class="messages" #chatContainer>
+    <div *ngFor="let message of messages" class="message d-flex align-items-center" [ngClass]="{'user': message.sender === 'user', 'server': message.sender === 'server'}">
+      <img [src]="getAvatarUrl(message.sender)" class="avatar me-2" alt="Avatar">
+      <div class="message-details flex-grow-1">
+        <div class="message-sender">{{ message.sender === 'user' ? 'Uczeń' : 'Bot' }}</div>
+        <div class="message-content">{{ message.text }}</div>
+      </div>
+    </div>
+    <div class="text-center" *ngIf="isLoading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Ładowanie...</span>
+      </div>
+    </div>
+  </div>
+<!--  <div class="message-input d-flex">-->
+<!--    <input type="text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Wpisz wiadomość..." class="form-control">-->
+<!--    <button (click)="sendMessage()" class="btn btn-primary">Wyślij</button>-->
+<!--    <button (click)="clearHistory()" class="btn btn-secondary">Wyczyść</button>-->
+<!--  </div>-->
+  <div class="message-input d-flex flex-column">
+    <textarea [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Wpisz wiadomość..." class="form-control mb-2"></textarea>
+    <div class="button-group d-flex justify-content-center">
+      <button (click)="sendMessage()" class="btn btn-primary me-2">Wyślij</button>
+      <button (click)="clearHistory()" class="btn btn-secondary">Wyczyść</button>
+    </div>
+  </div>
+</div>
+

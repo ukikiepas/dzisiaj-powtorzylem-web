@@ -5,4 +5,11 @@
   <router-outlet></router-outlet>
 </main>
 
+<!-- Okno czatu -->
+<div class="chat-window" *ngIf="isChatOpen">
+  <app-chat></app-chat> <!-- Tutaj odwołujesz się do komponentu czatu -->
+</div>
+
+
+
 <!--<app-footer *ngIf="showNavAndFooter"></app-footer>-->

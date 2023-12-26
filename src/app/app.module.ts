@@ -27,10 +27,13 @@ import {CreatesetComponent} from "./vocabset/sets/create/createset.component";
 import {SetComponent} from "./vocabset/sets/set/set.component";
 import {FindsetComponent} from "./vocabset/sets/findset/findset.component";
 import {DetailedViewSetComponent} from "./vocabset/sets/set/detailed-view-set/detailed-view-set.component";
+import {BlogComponent} from "./blog/blog.component";
+import {ChatComponent} from "./chat/chat.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
+  { path: 'blog', component: BlogComponent},
   { path: 'landing', component: LandingComponent},
   { path: 'home', component: HomeComponent},
   { path: 'irregular', component: IrregularComponent},
@@ -41,7 +44,8 @@ const routes: Routes = [
   { path: `vocabulary-set/create-set`, component: CreatesetComponent},
   { path: `vocabulary-set/find-set`, component: FindsetComponent},
   { path: `vocabulary-set/sets`, component: SetComponent},
-  { path: `vocabulary-set/sets/:setId`, component: DetailedViewSetComponent}
+  { path: `vocabulary-set/sets/:setId`, component: DetailedViewSetComponent},
+  { path: `chat`, component: ChatComponent}
 ];
 
 registerLocaleData(localePl);
@@ -76,6 +80,7 @@ registerLocaleData(localePl);
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ChatComponent,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

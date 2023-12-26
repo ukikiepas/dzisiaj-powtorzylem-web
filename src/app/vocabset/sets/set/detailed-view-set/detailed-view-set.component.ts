@@ -5,6 +5,10 @@ import {EditSetService} from "../../../../shared/services/reading-set.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {faPlusCircle} from "@fortawesome/free-solid-svg-icons/faPlusCircle";
+import {faCog} from "@fortawesome/free-solid-svg-icons";
+import {AuthenticationService} from "../../../../auth/services/authentication.service";
 
 @Component({
   selector: 'app-detailed-view-set',
@@ -12,7 +16,8 @@ import {NgForOf, NgIf} from "@angular/common";
   imports: [
     FormsModule,
     NgIf,
-    NgForOf
+    NgForOf,
+    FontAwesomeModule
   ],
   templateUrl: './detailed-view-set.component.html',
   styleUrls: ['./detailed-view-set.component.css']
@@ -33,7 +38,11 @@ export class DetailedViewSetComponent {
   showResults: boolean = false;
 
 
-  constructor(private setsService: SetsService, private editSetService: EditSetService, private router: Router, private route: ActivatedRoute) {
+  constructor(private setsService: SetsService,
+              private editSetService: EditSetService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private authenticationService: AuthenticationService) {
     console.log('DetailedViewSetComponent initialized');
   }
 
@@ -114,4 +123,28 @@ export class DetailedViewSetComponent {
     this.router.navigate(['/vocabulary-set/create-set']); // Przekierowanie do komponentu edycji
   }
 
+  isOwner(set: any): boolean {
+    let currentUsername = this.authenticationService.getUsernameFromToken();
+    return currentUsername === set.creator;
+  }
+
+  copySet(setId: number): void {
+    this.setsService.addToFavourites(setId).subscribe({
+      next: (response) => {
+        console.log("Zestaw dodany do ulubionych");
+        this.router.navigate(['/vocabulary-set/sets'])
+      },
+      error: (error) => {
+        console.error("Wystąpił błąd podczas dodawania do ulubionych");
+      }
+    });
+  }
+
+  protected readonly faPlus = faPlusCircle;
+  protected readonly faCog = faCog;
+
+  //Todo to be done
+  deleteSet() {
+
+  }
 }

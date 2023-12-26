@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthenticationService} from "../../auth/services/authentication.service";
 import {Router} from "@angular/router";
+import {ChatService} from "../../chat/service/chat.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,13 +13,13 @@ export class NavbarComponent {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private chatService: ChatService) {
   }
 
-  // logout() {
-  //   this.router.navigate(['/login'])
-  //   this.authenticationService.logout();
-  // }
+  toggleChat(): void {
+    this.chatService.toggleChat();
+  }
 
   logout() {
     this.authenticationService.logout().subscribe(

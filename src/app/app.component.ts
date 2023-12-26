@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import {ChatService} from "./chat/service/chat.service";
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,10 @@ import { filter } from 'rxjs/operators';
   export class AppComponent implements OnInit {
   title = 'dzisiaj-powtorzylem-web';
   showNavAndFooter = true;
+  isChatOpen: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private chatService: ChatService) {}
 
   ngOnInit() {
     this.router.events.pipe(
@@ -23,6 +26,9 @@ import { filter } from 'rxjs/operators';
       } else {
         this.showNavAndFooter = true;
       }
+    });
+    this.chatService.onChatToggle.subscribe(isOpen => {
+      this.isChatOpen = isOpen;
     });
   }
 

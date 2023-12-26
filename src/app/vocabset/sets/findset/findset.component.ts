@@ -79,25 +79,13 @@ export class FindsetComponent {
 
 
   private addSetToFavourites(setId: number): void {
-    if (this.isFavourite(setId)) {
-      console.log("Ten zestaw został już dodany do ulubionych.");
-      return;
-    }
-
     this.setsService.addToFavourites(setId).subscribe({
       next: (response) => {
         console.log("Zestaw dodany do ulubionych");
-        // Aktualizuj UI, jeśli to konieczne
       },
       error: (error) => {
         console.error("Wystąpił błąd podczas dodawania do ulubionych");
-        this.addedToFavourites.delete(setId); // Usuń zestaw ze zbioru w przypadku błędu
       }
-    });
-
-    this.setsService.findSets(this.searchTerm, this.selectedCategory, this.currentPage, this.pageSize).subscribe(response => {
-      this.searchResults = response.data.content;
-      this.totalPages = response.data.totalPages;
     });
   }
 

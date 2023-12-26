@@ -1,3 +1,18 @@
+/*Nagłówek*/
+.page-header {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.page-header h1 {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.page-header p {
+  color: #6c757d;
+}
+
 /*WYBÓR ZESTAWU */
 .vocabulary-sets-container {
   margin-top: 30px;
@@ -32,6 +47,11 @@
   font-weight: bold;
 }
 
+.vocabulary-set-tile.active {
+  background-color: #e6f9e6; /* Jasny odcień zieleni */
+  border-color: #b2d8b2; /* Lekko ciemniejszy odcień dla obramowania */
+}
+
 .vocabulary-set-description {
   color: #666; /* Kolor opisów */
   font-size: medium;
@@ -40,4 +60,14 @@
 .vocabulary-set-tile:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.vocabulary-set-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+.vocabulary-set-info p {
+  margin: 5px 0;
 }

@@ -1,10 +1,27 @@
+<!-- naglowek -->
+<div class="page-header">
+  <h1>Twoje Zestawy Słówek</h1>
+  <p>Wybierz zestaw, którego chcesz się pouczyć.</p>
+</div>
+
 <!-- Lista wszystkich zestawów -->
 <div *ngIf="!vocabularySet" class="vocabulary-sets-container">
-  <div *ngFor="let set of allVocabularySets" class="vocabulary-set-tile" (click)="selectVocabularySet(set)">
+  <div *ngFor="let set of allVocabularySets"
+       class="vocabulary-set-tile"
+       [ngClass]="{'active': set.isActive}"
+       (click)="selectVocabularySet(set)">
     <div>
       <div class="vocabulary-set-title">{{ set.title }}</div>
       <div class="vocabulary-set-description">{{ set.description }}</div>
+      <div class="vocabulary-set-info">
+        <p>Data utworzenia: {{ set.creationDate | date }}</p>
+        <p>Status: {{ set.isActive ? 'Aktywny' : 'Nieaktywny' }}</p>
+        <p>Ostatnia powtórka: {{ set.lastReviewed}}</p>
+      </div>
     </div>
   </div>
 </div>
+
+
+
 
