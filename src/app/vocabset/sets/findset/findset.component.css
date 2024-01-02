@@ -25,6 +25,10 @@
   font-size: 1.25rem;
 }
 
+.button-question{
+  background-color: red;
+}
+
 .card {
   max-width: 600px; /* Ograniczenie maksymalnej szerokości karty */
   margin: auto; /* Automatyczne marginesy do wyśrodkowania karty */

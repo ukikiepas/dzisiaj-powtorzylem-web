@@ -1,7 +1,8 @@
 /*Nagłówek*/
 .page-header {
   text-align: center;
-  margin: 20px 0;
+  margin-top: 50px;
+  margin-bottom: 10px;
 }
 
 .page-header h1 {
@@ -15,7 +16,6 @@
 
 /*WYBÓR ZESTAWU */
 .vocabulary-sets-container {
-  margin-top: 30px;
   display: flex;
   flex-direction: column; /* Ustaw kafelki w kolumnie */
   align-items: center; /* Wyśrodkuj kafelki w poziomie */
@@ -47,11 +47,6 @@
   font-weight: bold;
 }
 
-.vocabulary-set-tile.active {
-  background-color: #e6f9e6; /* Jasny odcień zieleni */
-  border-color: #b2d8b2; /* Lekko ciemniejszy odcień dla obramowania */
-}
-
 .vocabulary-set-description {
   color: #666; /* Kolor opisów */
   font-size: medium;
@@ -70,4 +65,56 @@
 
 .vocabulary-set-info p {
   margin: 5px 0;
+}
+
+/*KOLORKI DLA KAFELKÓW*/
+.vocabulary-set-tile.reviewed-today {
+  background-color: #e6f9e6; /* Jasny odcień zieleni */
+  border-color: #b2d8b2; /* Lekko ciemniejszy odcień dla obramowania */
+}
+
+.vocabulary-set-tile.not-reviewed-today {
+  background-color: #ffd297; /* Jasny odcień pomarańczowego */
+  border-color: rgb(255, 189, 85); /* Lekko ciemniejszy odcień dla obramowania */
+}
+
+.vocabulary-set-tile.inactive {
+  background-color: #e0e0e0; /* Szary kolor dla nieaktywnych zestawów */
+  border-color: rgb(208, 208, 208); /* Lekko ciemniejszy odcień dla obramowania */
+}
+
+/*MINI MAPA*/
+.mini-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Dodaj tu inne style, jeśli potrzebujesz */
+}
+
+.map-item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Odstęp między elementami */
+}
+
+.color-box {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px; /* Odstęp między kwadratem a tekstem */
+  border: 1px solid #000; /* Obramowanie kwadratu */
+}
+
+.color-box.reviewed-today {
+  background-color: #e6f9e6;
+  border-color: #b2d8b2;
+}
+
+.color-box.not-reviewed-today {
+  background-color: #ffd297;
+  border-color: rgb(255, 189, 85);
+}
+
+.color-box.inactive {
+  background-color: #e0e0e0;
+  border-color: rgb(208, 208, 208);
 }

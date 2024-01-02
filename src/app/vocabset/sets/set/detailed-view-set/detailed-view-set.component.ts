@@ -4,11 +4,12 @@ import {SetsService} from "../../../services/sets.service";
 import {EditSetService} from "../../../../shared/services/reading-set.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faPlusCircle} from "@fortawesome/free-solid-svg-icons/faPlusCircle";
-import {faCog} from "@fortawesome/free-solid-svg-icons";
+import {faCog, faQuestion, faSquarePollHorizontal, faSquarePollVertical} from "@fortawesome/free-solid-svg-icons";
 import {AuthenticationService} from "../../../../auth/services/authentication.service";
+import {UserResultAnswer, UserResultDto} from "../../../models/results.interface";
 
 @Component({
   selector: 'app-detailed-view-set',
@@ -36,14 +37,17 @@ export class DetailedViewSetComponent {
   score: number = 0;
   userAnswer: string = ''; // Dodaj to
   showResults: boolean = false;
+  testStartTime!: Date;
+  results!: UserResultAnswer[];
 
 
   constructor(private setsService: SetsService,
               private editSetService: EditSetService,
               private router: Router,
               private route: ActivatedRoute,
-              private authenticationService: AuthenticationService) {
-    console.log('DetailedViewSetComponent initialized');
+              private authenticationService: AuthenticationService)
+  {
+    this.results = [];
   }
 
 
@@ -51,14 +55,12 @@ export class DetailedViewSetComponent {
     this.route.paramMap.subscribe(params => {
       const setId = params.get('setId');
       if (setId) {
-        console.log('Loading set details for ID:', setId);
         this.loadSetDetails(setId);
       }
     });
   }
 
   loadSetDetails(setId: string){
-    console.log('xDDD');
     this.setsService.getSet(setId).subscribe(
       response => {
         this.vocabularySet = response.data;
@@ -85,6 +87,7 @@ export class DetailedViewSetComponent {
     this.currentTestIndex = 0;
     this.userAnswers = [];
     this.score = 0;
+    this.testStartTime = new Date();
   }
 
   retryTest(): void {
@@ -100,13 +103,20 @@ export class DetailedViewSetComponent {
 
   submitAnswer(answer: string): void {
     answer = answer.trim() || "???";
-
     const correctAnswer = this.vocabularySet.vocabularyDtos[this.currentTestIndex].word;
     this.userAnswers.push(answer);
 
-    if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
-      this.score++;
+    const isCorrect = answer.toLowerCase() === correctAnswer.toLowerCase();
+    const userResultAnswear: UserResultAnswer = {
+      id: null,
+      resultId: null,
+      vocabularyWord: correctAnswer,
+        userAnswer: answer,
+        isCorrect: isCorrect
     }
+    this.results.push(userResultAnswear);
+
+    if (isCorrect) this.score++;
 
     if (this.currentTestIndex < this.vocabularySet.vocabularyDtos.length - 1) {
       this.userAnswer = '';
@@ -114,7 +124,34 @@ export class DetailedViewSetComponent {
     } else {
       this.showTest = false;
       this.showResults = true;
+      this.saveTestResults();
     }
+  }
+
+  saveTestResults(): void {
+    const testEndTime = new Date();
+    const duration = testEndTime.getTime() - this.testStartTime.getTime();
+    const userResult: UserResultDto = {
+      resultId: null,
+      setId: this.vocabularySet.id,
+      username: this.vocabularySet.creator,
+      correctAnswers: this.results.filter(r => r.isCorrect).length,
+      badAnswers: this.results.filter(r => !r.isCorrect).length,
+      score: parseFloat((this.score / this.vocabularySet.vocabularyDtos.length).toFixed(2)),
+      durationTime: duration,
+      insertTime: new Date(),
+      answers: this.results
+    };
+    this.setsService.sendUserResult(userResult).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        this.results = [];
+        this.userAnswer = ''
+    },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   //edycja
@@ -147,4 +184,8 @@ export class DetailedViewSetComponent {
   deleteSet() {
 
   }
+
+  protected readonly faQuestion = faQuestion;
+  protected readonly faSquarePollHorizontal = faSquarePollHorizontal;
+  protected readonly faSquarePollVertical = faSquarePollVertical;
 }

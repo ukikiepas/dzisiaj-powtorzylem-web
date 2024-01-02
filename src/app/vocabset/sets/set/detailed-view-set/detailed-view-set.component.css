@@ -1,3 +1,33 @@
+/* MENU DLA OPERACJI */
+
+.set-actions {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-question {
+  background-color: #f6e25f; /* Zielony kolor tła */
+  border: none;
+  border-radius: 50%; /* Okrągły kształt */
+  color: white; /* Biały kolor tekstu */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px; /* Rozmiar tekstu */
+  cursor: pointer;
+}
+
+.button-score {
+  background-color: #558d00; /* Zielony kolor tła */
+  border: none;
+  color: white;
+}
+
+
+
+
 /*NAGŁÓWEK INFO O SECIE */
 .header-container {
   position: relative; /* Wymagane dla pozycjonowania absolutnego dzieci */
@@ -33,12 +63,6 @@
 
 
 
-/* MENU DLA OPERACJI */
-
-.set-actions {
-  text-align: center;
-  margin-bottom: 20px;
-}
 
 /*FISZKI */
 

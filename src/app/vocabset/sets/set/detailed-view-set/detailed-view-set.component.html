@@ -1,6 +1,12 @@
 <div class="header-container">
   <!-- MENU DLA OPERACJI -->
   <div *ngIf="vocabularySet" class="set-actions settings-icon">
+    <button class="btn btn-secondary me-3 button-score">
+      <fa-icon [icon]="faSquarePollVertical" class="fa-icon"></fa-icon>
+    </button>
+    <button class="btn btn-secondary me-3 button-question" data-bs-toggle="modal" data-bs-target="#infoModal">
+      <fa-icon [icon]="faQuestion" class="fa-icon"></fa-icon>
+    </button>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
         <fa-icon [icon]="faCog" class="fa-icon"></fa-icon>
@@ -17,7 +23,6 @@
         </li>
       </ul>
     </div>
-
   </div>
   <!-- NAGŁÓWEK -->
   <h3 class="set-title">{{ vocabularySet.title }}</h3>
@@ -130,5 +135,35 @@
   <div class="test-results-buttons">
     <button class="btn btn-primary" (click)="retryTest()">Spróbuj ponownie</button>
     <button class="btn btn-secondary" (click)="goBack()">Powrót</button>
+  </div>
+</div>
+
+
+
+
+<!-- InfoModal -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalLabel">Instrukcja korzystania ze strony</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <b>Drogi użytkowniku</b>
+        <br>
+        <br>
+        Strona z zestawami służy do ćwiczenia oraz utrwalania słówek.
+        Pamiętaj, że jeśli rozpoczniesz test i go nie ukończysz, próba i tak zostanie przesłana i będzie widoczna w twojej historii użytkownika.
+        <br>
+        <br>
+        Fingers Crossed 🤞
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
   </div>
 </div>

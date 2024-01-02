@@ -5,6 +5,7 @@ import { RoutePaths } from "../../models/route-paths.enum";
 import { CreateVocabularySetDto } from "../sets/create/models/createset.interface";
 import {VocabularySet, VocabularySetViewDto} from "../models/sets.interface";
 import {ApiResponse} from "../../utlis/apimodel.interface";
+import {UserResultDto} from "../models/results.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,11 @@ export class SetsService {
 
   addToFavourites(setId: number): Observable<any> {
     return this.http.post(`${RoutePaths.GENERAL_API}/vocabulary-set/add-fav/${setId}`, {});
+  }
+
+  //Send results
+  sendUserResult(userResult: UserResultDto): Observable<any> {
+    return this.http.post(`${RoutePaths.GENERAL_API}/vocabulary-set/result`, userResult);
   }
 
 }

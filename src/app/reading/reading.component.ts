@@ -13,7 +13,8 @@ import {WordsDictionary} from "./models/words.dictionary";
 })
 
 export class ReadingComponent {
-
+  audioId = 3; // Przykładowy identyfikator pliku audio
+  audioUrl = `http://localhost:8080/api/v1/auth/readings/audio/${this.audioId}`;
 
   reading!:Reading;
   questionWithAnswers!:QuestionWithAnswers[];

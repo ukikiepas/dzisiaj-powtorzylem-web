@@ -2,13 +2,31 @@
 <div class="page-header">
   <h1>Twoje Zestawy Słówek</h1>
   <p>Wybierz zestaw, którego chcesz się pouczyć.</p>
+  <div class="mini-map">
+    <div class="map-item">
+      <div class="color-box reviewed-today"></div>
+      <p class="mt-3">Przejrzane dzisiaj</p>
+    </div>
+    <div class="map-item">
+      <div class="color-box not-reviewed-today"></div>
+      <p class="mt-3">Nieprzejrzane dzisiaj</p>
+    </div>
+    <div class="map-item">
+      <div class="color-box inactive"></div>
+      <p class="mt-3">Nieaktywne</p>
+    </div>
+  </div>
 </div>
 
 <!-- Lista wszystkich zestawów -->
 <div *ngIf="!vocabularySet" class="vocabulary-sets-container">
   <div *ngFor="let set of allVocabularySets"
        class="vocabulary-set-tile"
-       [ngClass]="{'active': set.isActive}"
+       [ngClass]="{
+       'reviewed-today': set.isActive && isReviewedToday(set.lastReviewed),
+       'not-reviewed-today': set.isActive && !isReviewedToday(set.lastReviewed),
+       'inactive': !set.isActive
+     }"
        (click)="selectVocabularySet(set)">
     <div>
       <div class="vocabulary-set-title">{{ set.title }}</div>
