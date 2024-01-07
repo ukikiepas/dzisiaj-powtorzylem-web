@@ -1,7 +1,8 @@
 <div class="header-container">
   <!-- MENU DLA OPERACJI -->
   <div *ngIf="vocabularySet" class="set-actions settings-icon">
-    <button class="btn btn-secondary me-3 button-score">
+    <button *ngIf="isOwner(vocabularySet)" class="btn btn-secondary me-3 button-score"
+            (click)="goToProgress()">
       <fa-icon [icon]="faSquarePollVertical" class="fa-icon"></fa-icon>
     </button>
     <button class="btn btn-secondary me-3 button-question" data-bs-toggle="modal" data-bs-target="#infoModal">

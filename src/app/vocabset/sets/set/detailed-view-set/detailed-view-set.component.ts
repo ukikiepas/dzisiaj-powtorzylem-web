@@ -185,7 +185,13 @@ export class DetailedViewSetComponent {
 
   }
 
+  goToProgress() {
+    this.router.navigate([`/vocabulary-set/sets/analysis/${this.vocabularySet.id}`])
+  }
+
   protected readonly faQuestion = faQuestion;
   protected readonly faSquarePollHorizontal = faSquarePollHorizontal;
   protected readonly faSquarePollVertical = faSquarePollVertical;
+
+
 }

@@ -47,9 +47,13 @@ export class SetsService {
     return this.http.post(`${RoutePaths.GENERAL_API}/vocabulary-set/add-fav/${setId}`, {});
   }
 
-  //Send results
+  //Results
   sendUserResult(userResult: UserResultDto): Observable<any> {
     return this.http.post(`${RoutePaths.GENERAL_API}/vocabulary-set/result`, userResult);
+  }
+
+  getResultsDay(day: string): Observable<any> {
+    return this.http.get(`${RoutePaths.GENERAL_API}/vocabulary-set/result/${day}`);
   }
 
 }

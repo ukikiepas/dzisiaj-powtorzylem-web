@@ -28,6 +28,7 @@ import {SetComponent} from "./vocabset/sets/set/set.component";
 import {FindsetComponent} from "./vocabset/sets/findset/findset.component";
 import {DetailedViewSetComponent} from "./vocabset/sets/set/detailed-view-set/detailed-view-set.component";
 import {ChatComponent} from "./chat/chat.component";
+import {SetAnalysisComponent} from "./vocabset/sets/set/set-analysis/set-analysis.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: `vocabulary-set/find-set`, component: FindsetComponent},
   { path: `vocabulary-set/sets`, component: SetComponent},
   { path: `vocabulary-set/sets/:setId`, component: DetailedViewSetComponent},
+  { path: `vocabulary-set/sets/analysis/:setId`, component: SetAnalysisComponent},
   { path: `chat`, component: ChatComponent}
 ];
 

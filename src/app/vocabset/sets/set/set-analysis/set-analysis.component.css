@@ -1,0 +1,96 @@
+/* Centrowanie całego komponentu */
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Stylizacja nagłówka */
+.header {
+  font-size: 1.5em;
+  color: #495057; /* Możesz dostosować kolor */
+  margin-bottom: 15px;
+}
+
+/* Zmniejszenie szerokości inputa i dodanie marginesu */
+.date-input {
+  width: 10%; /* Dostosuj szerokość według potrzeb */
+  margin-bottom: 15px;
+}
+
+
+/*kafelki*/
+.accordion-button:not(.collapsed) {
+  color: #495057; /* Możesz dostosować kolor */
+  background-color: #dddee0; /* Możesz dostosować kolor tła */
+}
+
+.accordion-button {
+  text-align: center;
+  width: 100%; /* Upewnij się, że przycisk rozciąga się na całą szerokość nagłówka */
+}
+
+.custom-accordion-item .accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-accordion-item .accordion-button {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.custom-accordion-item {
+  width: 100%; /* Możesz dostosować szerokość */
+  max-width: 800px; /* Możesz dostosować maksymalną szerokość */
+  min-width: 800px; /* Możesz dostosować maksymalną szerokość */
+  margin: auto; /* Centrowanie kafelka, jeśli jest mniejszy niż pełna szerokość */
+  justify-content: center;
+  align-items: center;
+}
+.custom-accordion-item .accordion-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media (max-width: 800px) {
+  .custom-accordion-item {
+    max-width: 100%;
+    min-width: 0; /* lub inną wartość, która pasuje do mniejszych ekranów */
+  }
+}
+
+.custom-accordion-item .accordion-header {
+  font-size: 1.2em; /* Możesz dostosować rozmiar czcionki */
+  background-color: #f8f9fa; /* Możesz dostosować kolor tła */
+}
+
+.custom-accordion-item .accordion-body {
+  padding: 20px; /* Możesz dostosować wartość paddingu */
+}
+
+.text-danger {
+  color: #dc3545; /* Czerwony dla błędnych odpowiedzi */
+}
+
+.text-success {
+  color: #28a745; /* Zielony dla poprawnych odpowiedzi */
+}
+
+/* WYKRESY */
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40vh;
+  width: 50vw;
+}
+.chart-container canvas {
+  flex: 1; /* Każdy wykres zajmuje równą część kontenera */
+  margin: 10px; /* Opcjonalny margines dla lepszego wyświetlania */
+}
