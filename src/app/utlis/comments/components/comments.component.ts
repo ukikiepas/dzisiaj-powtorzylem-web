@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnInit} from "@angular/core";
+import {ChangeDetectorRef, Component, Input, numberAttribute, OnInit} from "@angular/core";
 import {CommentsService} from "../services/comments.service";
 import {CommentInterface} from "../models/commentInterface";
 import {AuthenticationService} from "../../../auth/services/authentication.service";
@@ -11,6 +11,7 @@ import {ActiveCommentInterface} from "../models/activeCommentInterface";
 export class CommentsComponent implements OnInit{
   @Input() currentUsername!: string | undefined;
   @Input() section!: string;
+  @Input({transform: numberAttribute}) sectionParticularId!: number;
 
 
   comments: CommentInterface[] = [];
@@ -23,7 +24,7 @@ export class CommentsComponent implements OnInit{
               private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.commentsService.getComments(this.section, 2).subscribe(comments => {
+    this.commentsService.getComments(this.section, this.sectionParticularId).subscribe(comments => {
       this.comments = comments.sort(
         (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       this.currentUsername = this.authenticationService.getUsernameFromToken();

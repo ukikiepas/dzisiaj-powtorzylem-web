@@ -21,3 +21,20 @@
 .highlight {
   background-color: yellow;
 }
+
+.btn-custom {
+  background-color: #5c6bc0; /* Wybierz kolor z palety strony */
+  color: white; /* Dla czytelności tekstu */
+  border: none; /* Usuń standardową obramówkę */
+  padding: 10px 20px; /* Dodaj więcej miejsca wokół tekstu */
+  font-size: 16px; /* Zwiększ rozmiar czcionki */
+  border-radius: 5px; /* Lekkie zaokrąglenie krawędzi */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Delikatny cień dla głębi */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Płynne przejścia dla interakcji */
+}
+
+.btn-custom:hover {
+  background-color: #3f51b5; /* Ciemniejszy kolor przy najechaniu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Większy cień dla efektu uniesienia */
+  cursor: pointer; /* Kursor wskazujący interaktywność */
+}

@@ -5,11 +5,12 @@ import {ReadingSelectionService} from "./reading-selection/services/reading-sele
 import {ReadingService} from "./services/reading.service";
 import {QuestionWithAnswers} from "./models/question-with-answers.interface";
 import {WordsDictionary} from "./models/words.dictionary";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-reading',
   templateUrl: './reading.component.html',
-  styleUrls: ['./reading.component.css']
+  styleUrls: ['./reading.component.css'],
 })
 
 export class ReadingComponent {
@@ -19,9 +20,10 @@ export class ReadingComponent {
   reading!:Reading;
   questionWithAnswers!:QuestionWithAnswers[];
   wordsDictionaries!:WordsDictionary[];
-  userAnswers: Map<number, number> = new Map(); // Mapa śledząca wybory użytkownika
+  userAnswers: Map<number, number> = new Map();
   showMessage: boolean = false;
   processedContent!: { text: string; highlight: boolean }[];
+  showCommentsSection: boolean = false;
 
 
 
@@ -188,6 +190,31 @@ export class ReadingComponent {
       this.highlightContent();
     }
   }
+
+  toggleCommentsSectionAndScroll(): void {
+    if (this.showCommentsSection) {
+      // Przewiń do góry, a następnie ukryj sekcję komentarzy
+      this.scrollToTop(() => {
+        this.showCommentsSection = false;
+      });
+    } else {
+      // Pokaż sekcję komentarzy i przewiń do niej
+      this.showCommentsSection = true;
+      setTimeout(() => {
+        document.querySelector('#commentsSection')!.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }
+
+  scrollToTop(callback: () => void): void {
+    const topElement = document.querySelector('#topOfPage'); // Element, do którego chcesz przewinąć
+    topElement!.scrollIntoView({ behavior: 'smooth' });
+
+    setTimeout(() => {
+      callback();
+    }, 300); // Dostosuj czas oczekiwania do czasu trwania przewijania
+  }
+
 
 
 

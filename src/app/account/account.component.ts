@@ -43,7 +43,9 @@ export class AccountComponent implements OnInit {
     lastname: ['', Validators.required],
     city: [''],
     bio: [''],
-    isPublicAccount: [false]
+    isPublicAccount: [false],
+    parentEmail: [''],
+    isParentNotified: [false]
   });
 
   //OBSŁUGA KONTA (STRONA GŁÓWNA)
@@ -63,7 +65,10 @@ export class AccountComponent implements OnInit {
           lastname: this.userData.lastname,
           city: this.userData.city,
           bio: this.userData.bio,
-          isPublicAccount: this.userData.isPublicAccount
+          isPublicAccount: this.userData.isPublicAccount,
+          parentEmail: this.userData.parentEmail,
+          isParentNotified: this.userData.isParentNotified,
+
         });
 
       },
@@ -171,6 +176,8 @@ export class AccountComponent implements OnInit {
         city: this.editAccountForm.value.lastname,
         bio: this.editAccountForm.value.lastname,
         isPublicAccount: this.editAccountForm.value.isPublicAccount,
+        parentEmail: this.editAccountForm.value.parentEmail,
+        isParentNotified: this.editAccountForm.value.isParentNotified,
       }
       this.accountService.changeUserDetails(updatedUserDto).subscribe({
         next: () => {
@@ -180,6 +187,8 @@ export class AccountComponent implements OnInit {
           this.userData.city = updatedUserDto.city;
           this.userData.bio = updatedUserDto.bio;
           this.userData.isPublicAccount = updatedUserDto.isPublicAccount;
+          this.userData.parentEmail = updatedUserDto.parentEmail;
+          this.userData.isParentNotified = updatedUserDto.isParentNotified;
         },
         error: err => {
 

@@ -66,12 +66,21 @@
 
 
         <!-- Dodatkowe dane -->
-      <div class="col-12 col-md-12 ">
+      <div class="row g-3">
+        <div class="col-6 col-md-6">
           <div class="form-group">
             <label for="city">Miasto</label>
             <input type="text" class="form-control" id="city" formControlName="city" placeholder="">
           </div>
         </div>
+        <div class="col-6 col-md-6">
+          <div class="form-group">
+            <label for="parentEmail">Email rodzica/opiekuna</label>
+            <input type="email" class="form-control" id="parentEmail" formControlName="parentEmail" placeholder="">
+            <!-- Tutaj możesz dodać walidację dla pola email rodzica, jeśli jest wymagane -->
+          </div>
+        </div>
+      </div>
         <div class="col-12 col-md-12">
           <div class="form-group">
             <label for="bio">O mnie</label>

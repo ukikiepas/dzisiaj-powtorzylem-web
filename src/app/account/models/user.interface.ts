@@ -9,9 +9,11 @@ export interface User {
   password: string;
   city: string;
   bio: string;
+  parentEmail: string;
   role: Role;
   isPublicAccount: boolean;
   image: string;
+  isParentNotified: boolean;
 }
 
 export interface UserDto {
@@ -26,5 +28,7 @@ export interface UserDto {
   role?: Role;
   isPublicAccount: boolean;
   image?: string;
+  parentEmail: string;
+  isParentNotified: boolean;
 }
 

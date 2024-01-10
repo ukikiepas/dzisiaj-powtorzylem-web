@@ -23,6 +23,7 @@ export class RegisterComponent {
     password: ['', [Validators.required, Validators.minLength(8)]],
     isPublicAccount: [false],
     city: '',
+    parentEmail: [''],
     bio: ''
   });
 
@@ -44,12 +45,13 @@ export class RegisterComponent {
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
         city: this.registerForm.value.city,
+        parentEmail: this.registerForm.value.parentEmail,
         bio: this.registerForm.value.bio,
         role: Role.USER,
         isPublicAccount: this.registerForm.value.isPublicAccount,
-        image: ""
+        image: "",
+        isParentNotified: true
       };
-      console.log(userToRegister);
       this.authenticationService.register(userToRegister).subscribe(
         data => {
           console.log("rejestracja z sukcesem", data)

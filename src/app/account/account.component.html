@@ -25,11 +25,13 @@
           <p><strong>Nazwisko:</strong> {{ userData.lastname }}</p>
           <p><strong>Nazwa użytkownika:</strong> {{ userData.username }}</p>
           <p><strong>Email:</strong> {{ userData.email }}</p>
+          <p><strong>Email opiekuna:</strong> {{ userData.parentEmail }}</p>
           <p><strong>Miasto:</strong> {{ userData.city }}</p>
           <p><strong>O mnie:</strong> {{ userData.bio }}</p>
           <p><strong>Data utworzenia konta:</strong> {{ userData.creationDate | date: 'longDate' }}</p>
           <p><strong>Rola:</strong> {{ userData.role }}</p>
           <p><strong>Konto publiczne:</strong> {{ userData.isPublicAccount ? 'Tak' : 'Nie' }}</p>
+          <p><strong>Powiadom opiekuna:</strong> {{ userData.isParentNotified ? 'Tak' : 'Nie' }}</p>
 
           <div>
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#passwordChangeModal">Zmień Hasło</button>
@@ -138,6 +140,11 @@
           </div>
 
           <div class="mb-3">
+            <label for="parentEmail">Email opiekuna</label>
+            <input type="text" formControlName="parentEmail" class="form-control" id="parentEmail">
+          </div>
+
+          <div class="mb-3">
             <label for="city">Miasto</label>
             <input type="text" formControlName="city" class="form-control" id="city">
           </div>
@@ -150,6 +157,11 @@
           <div class="mb-3 form-check">
             <label class="form-check-label" for="isPublicAccount">Konto publiczne</label>
             <input type="checkbox" formControlName="isPublicAccount" class="form-check-input" id="isPublicAccount">
+          </div>
+
+          <div class="mb-3 form-check">
+            <label class="form-check-label" for="isParentNotified">Powiadom opiekuna</label>
+            <input type="checkbox" formControlName="isParentNotified" class="form-check-input" id="isParentNotified">
           </div>
 
         </form>

@@ -1,4 +1,5 @@
 <div class="container mt-4" *ngIf="reading">
+  <div id="topOfPage"></div>
   <div class="row justify-content-center">
     <div class="col-md-12 text-center">
       <h2>{{ reading.title }}</h2>
@@ -85,5 +86,16 @@
     <div class="col-md-8 text-center">
       <button class="btn btn-primary" (click)="checkAnswers()">Sprawdź odpowiedzi</button>
     </div>
+  </div>
+
+  <!-- SEKCJA KOMENTARZY -->
+  <div class="mb-3">
+    <button class="btn btn-custom" (click)="toggleCommentsSectionAndScroll()">
+      {{ showCommentsSection ? 'Ukryj Komentarze' : 'Pokaż Komentarze' }}
+    </button>
+  </div>
+
+  <div *ngIf="showCommentsSection" id="commentsSection">
+    <comments [section]="'READING'" [sectionParticularId]="reading.readingId"></comments>
   </div>
 </div>
