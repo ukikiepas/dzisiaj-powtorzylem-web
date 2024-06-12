@@ -30,7 +30,6 @@ export class LoginComponent {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password
       };
-      console.log(authRequest)
       this.authenticationService.login(authRequest).subscribe(
         response => {
           this.router.navigate([RoutePaths.LANDING])

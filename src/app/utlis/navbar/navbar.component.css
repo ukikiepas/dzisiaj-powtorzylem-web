@@ -3,10 +3,23 @@
 }
 
 /* Zwiększenie odległości między linkami */
-.left-side-nav {
-  margin-left: 0.5rem; /* Dodanie marginesu po prawej stronie */
+@media (min-width: 992px) {
+  .left-side-nav {
+    margin-left: 0.5rem; /* Dodanie marginesu po prawej stronie */
+  }
 }
 
 .right-side-nav {
-  margin-right: 0.5rem; /* Dodanie marginesu po prawej stronie */
+  margin-left: 0.5rem; /* Dodanie marginesu po prawej stronie */
+}
+
+@media (max-width: 992px) { /* Bootstrap breakpoint dla large devices */
+  .navbar-nav .nav-item {
+    margin: 5px 0; /* Dodaje marginesy z góry i dołu dla każdego itemu */
+  }
+
+  .navbar-collapse {
+    padding-left: 1rem; /* Dodaje padding po lewej stronie menu */
+    padding-right: 1rem; /* Dodaje padding po prawej stronie menu */
+  }
 }

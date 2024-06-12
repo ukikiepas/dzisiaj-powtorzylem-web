@@ -4,9 +4,6 @@
 
   <div *ngIf="selectedDate">
     <h3 class="text-center">Analiza dla dnia: {{ selectedDate | date: 'longDate' }}</h3>
-    <!-- Tutaj komponenty/widoki szczegółowych danych analizy -->
-
-    <!--wykres-->
     <div class="chart-container ">
       <canvas id="myChart"></canvas>
       <canvas id="mistakesChart"></canvas>
@@ -47,11 +44,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
   </div>
 </div>
 </div>

@@ -21,51 +21,31 @@ Chart.register(...registerables);
   templateUrl: './set-analysis.component.html',
   styleUrls: ['./set-analysis.component.css']
 })
-export class SetAnalysisComponent implements OnInit{
+export class SetAnalysisComponent implements OnInit {
 
   selectedDate: string;
   userResultDto!: UserResultDto[];
   private generalProgressChart!: Chart;
   private mistakesChart!: Chart;
 
-
   constructor(private setsService: SetsService) {
     const today = new Date();
-    this.selectedDate = today.toISOString().split('T')[0]; // formatuj datę do formatu YYYY-MM-DD
+    this.selectedDate = today.toISOString().split('T')[0];
   }
-
 
   ngOnInit() {
     this.onDateChange();
   }
 
-
-  //main method
   onDateChange(): void {
     this.setsService.getResultsDay(this.selectedDate).subscribe(
       resp => {
         this.userResultDto = resp;
         console.log(this.userResultDto);
-        this.createChartGeneralProgress(); // Przenieś wywołanie tutaj
+        this.createChartGeneralProgress();
         this.createChartWrongAnswers()
       }
     );
-  }
-
-  formatDuration(durationMs: number): string {
-    const totalSeconds = Math.floor(durationMs / 1000);
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-
-    if (minutes === 0) {
-      return `${seconds} sek.`;
-    } else {
-      return `${minutes} min ${seconds} sek.`;
-    }
-  }
-
-  getIncorrectAnswers(answers: UserResultAnswer[]): UserResultAnswer[] {
-    return answers.filter(answer => !answer.isCorrect);
   }
 
   openAccordionItem(index: number) {
@@ -73,7 +53,6 @@ export class SetAnalysisComponent implements OnInit{
     const accordionItem = document.getElementById(id);
 
     if (accordionItem) {
-      // Rozwiń kafelek
       const button = accordionItem.querySelector('.accordion-button') as HTMLButtonElement;
       if (button && button.classList.contains('collapsed')) {
         button.click();
@@ -82,11 +61,9 @@ export class SetAnalysisComponent implements OnInit{
       // Przewiń do kafelka
       setTimeout(() => {
         accordionItem.scrollIntoView({ behavior: 'smooth' });
-      }, 300); // Dodano opóźnienie, aby uwzględnić czas rozwijania kafelka
+      }, 300);
     }
   }
-
-
 
   //Wykres dniowy
   createChartGeneralProgress() {
@@ -124,7 +101,7 @@ export class SetAnalysisComponent implements OnInit{
     );
   }
 
-  //Wykres błędowy
+  //Wykres błędów
   getMostMistakenWords() {
     const mistakeCount: Record<string, number> = {};
 
@@ -170,11 +147,10 @@ export class SetAnalysisComponent implements OnInit{
             ticks: {
               stepSize: 1,
               callback: function(value, index, values) {
-                // Sprawdza, czy wartość jest liczbą
                 if (typeof value === 'number' && value % 1 === 0) {
                   return value.toString();
                 }
-                return null; // Zwraca null, jeśli wartość nie jest liczbą całkowitą
+                return null;
               }
             }
           }
@@ -188,7 +164,17 @@ export class SetAnalysisComponent implements OnInit{
     );
   }
 
+  formatDuration(durationMs: number): string {
+    const totalSeconds = Math.floor(durationMs / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
 
+    if (minutes === 0) {
+      return `${seconds} sek.`;
+    } else {
+      return `${minutes} min ${seconds} sek.`;
+    }
+  }
 
 }
 

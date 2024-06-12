@@ -1,8 +1,8 @@
 <div class="container mt-4">
   <div class="row">
-    <div class="col">
-      <h2>Wybierz poziom czytanki</h2>
-      <select class="form-select" [(ngModel)]="selectedLevel" (change)="onLevelChange()">
+    <div class="col d-flex align-items-center">
+      <h2 class="mb-0 me-3">Wybierz poziom czytanki</h2>
+      <select class="form-select form-select-sm mt-1" style="width: auto;" [(ngModel)]="selectedLevel" (change)="onLevelChange()">
         <option value="A1">A1</option>
         <option value="A2">A2</option>
         <option value="B1">B1</option>

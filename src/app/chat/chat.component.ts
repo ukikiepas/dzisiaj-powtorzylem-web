@@ -70,9 +70,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         console.log(error);
         this.isLoading = false;
       });
-
-
-
       this.newMessage = '';
     }
   }
@@ -85,6 +82,5 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     localStorage.removeItem('chatHistory');
     this.messages = [];
   }
-
 
 }

@@ -49,13 +49,9 @@ export class CreatesetComponent implements OnInit{
     this.editSetService.currentEditSet.subscribe(set => {
       if (set) {
         this.editingSet = set;
-        this.fillFormWithSetData(set); // Wypełnienie formularza danymi zestawu
+        this.fillFormWithSetData(set);
       }
     });
-  }
-
-  vocabularies(): FormArray {
-    return this.createSetForm.get('newVocabularies') as FormArray;
   }
 
   createVocabulary(): FormGroup {
@@ -66,6 +62,10 @@ export class CreatesetComponent implements OnInit{
       definition: [''],
       imageLocation: ['']
     });
+  }
+
+  vocabularies(): FormArray {
+    return this.createSetForm.get('newVocabularies') as FormArray;
   }
 
   addVocabulary(): void {
@@ -117,10 +117,8 @@ export class CreatesetComponent implements OnInit{
         );
       }
       } else {
-        //TODO: Komunikat o błędzie jakis ładny
         console.error("Form is invalid");
       }
-
   }
 
   toggleOptionalFields(): void {

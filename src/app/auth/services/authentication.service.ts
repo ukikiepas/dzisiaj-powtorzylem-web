@@ -9,15 +9,17 @@ import {RoutePaths} from "../../models/route-paths.enum";
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private readonly API_URL = 'http://localhost:8080/api/v1/auth';
-  private jwtTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
+  private jwtTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
   constructor(private http: HttpClient) {
       const token = localStorage.getItem('access_token');
       this.jwtTokenSubject = new BehaviorSubject<string | null>(token);
     }
 
+  register(registerRequest: User): Observable<any> {
+    return this.http.post(`${RoutePaths.GENERAL_API}/register`, registerRequest);
+  }
 
   login(authenticationRequest: any): Observable<any> {
     return this.http.post(`${RoutePaths.GENERAL_API}/authenticate`, authenticationRequest).pipe(
@@ -33,8 +35,24 @@ export class AuthenticationService {
     );
   }
 
-  register(registerRequest: User): Observable<any> {
-    return this.http.post(`${RoutePaths.GENERAL_API}/register`, registerRequest);
+  logout(): Observable<void> {
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`
+    });
+
+    return this.http.post<void>(`${RoutePaths.GENERAL_API}/logout`, {}, {headers: headers}).pipe(
+      tap(() => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        this.jwtTokenSubject.next(null);
+      })
+    );
+  }
+
+  get accessToken(): Observable<string | null> {
+    return this.jwtTokenSubject.asObservable();
   }
 
   refreshToken(): Observable<any> {
@@ -44,7 +62,7 @@ export class AuthenticationService {
     };
     return this.http.post(`${RoutePaths.GENERAL_API}/refresh-token`, {}, { headers: headers }).pipe(
       tap((response: any) => {
-        localStorage.setItem('access_token', response.access_token);  // Zakładając, że odpowiedź zawiera nowy token dostępu
+        localStorage.setItem('access_token', response.access_token);
         this.jwtTokenSubject.next(response.access_token);
       }),
       catchError(error => {
@@ -54,44 +72,14 @@ export class AuthenticationService {
     );
   }
 
-
-  get accessToken(): Observable<string | null> {
-    return this.jwtTokenSubject.asObservable();
-  }
-
-
-  logout(): Observable<void> {
-
-    // Pobierz token dostępu z localStorage.
-    const accessToken = localStorage.getItem('access_token');
-
-    // Stwórz nagłówki dla żądania wylogowania.
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${accessToken}` // Dodajemy token dostępu do nagłówka Authorization.
-    });
-
-    return this.http.post<void>(`${RoutePaths.GENERAL_API}/logout`, {}, {headers: headers}).pipe(
-      tap(() => {
-        console.log(headers);
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        this.jwtTokenSubject.next(null);
-      })
-    );
-  }
-
-    getUsernameFromToken(): string | undefined {
-        const token = localStorage.getItem('access_token');
-        if (token) {
-            const payload = token.split('.')[1];
-            const decodedPayload = atob(payload);
-            const payloadObj = JSON.parse(decodedPayload);
-            return payloadObj.sub; // Zwróć uwagę, że używamy 'sub' zamiast 'username'
-        }
-        return undefined;
+  getUsernameFromToken(): string | undefined {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      const payload = token.split('.')[1];
+      const decodedPayload = atob(payload);
+      const payloadObj = JSON.parse(decodedPayload);
+      return payloadObj.sub;
     }
-
-
-
+    return undefined;
+  }
 }
